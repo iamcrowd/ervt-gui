@@ -136,6 +136,37 @@ top:0px;
 border-radius:10px;
 }
 
+/*
+Default (no temporal) option is located at the right-bottom of the entity. Each entity is created as non
+temporal by default.
+*/
+.tools-entity-def {
+  right:0px;
+  bottom:0px;
+  border-radius:10px;
+}
+
+/*
+Snapshot option is located at the right-top of the entity
+*/
+.tools-entity-snap {
+  right:0px;
+  top:0px;
+  border-radius:10px;
+}
+
+/*
+Temporal option is located at the right-center of the entity
+*/
+.tools-entity-temp {
+  top:50%;
+  right:0px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius:10px;
+}
+
+
 .tools-add-attr {
 top:0px;
 left:50%;
@@ -411,4 +442,54 @@ a:hover.tooltipsbottom span {
     left: 50%;
     margin-left: -76px;
     z-index: 999;
+}
+
+/*****menues para los elements*****/
+#menues{
+    position: relative;
+    float: right;
+    margin-top: 69px;
+    margin-right: 0px;
+    height: 500px;
+    max-height: 500px;
+    width: 270px;
+    max-width: 270px;
+    min-width: 270px;
+    background-color: #343a40;
+    display: block;
+    overflow-y: scroll;
+    color: white;
+}
+
+#encabezadoMenu{
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#encabezadoMenu h4{
+    float: left;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#btnMinimizeMenues{
+    float: right;
+}
+
+#menuOpciones {
+    float: left;
+    position: relative;
+}
+
+#menuLink{
+    position: relative;
+    height: auto;
+    color: white;
+}
+
+#menuClass{
+    position: relative;
+    height: auto;
+    float: left;
 }
