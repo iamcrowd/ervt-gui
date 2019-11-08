@@ -437,9 +437,9 @@ var actualRenameElement = null;
 var tools = $('<div class="toolbar">');
 tools.append('<div id="elementDeleteButton" class="tools tools-delete" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Remove the element</span></a></div>');
 
-tools.append('<div id="elTempButton" class="tools tools-entity-temp" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Set as Temporal</span></a></div>');
-tools.append('<div id="elSnapButton" class="tools tools-entity-snap" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Set as Snapshot</span></a></div>');
-tools.append('<div id="elDefButton" class="tools tools-entity-def" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Set as Non Temporal</span></a></div>');
+tools.append('<div id="elTempButton" class="tools tools-entity-temp" onclick="console.log()"><a class="tooltips" href="#"><i class="material-icons">date_range</i><span>Set as Temporal</span></a></div>');
+tools.append('<div id="elSnapButton" class="tools tools-entity-snap" onclick="console.log()"><a class="tooltips" href="#"><i class="material-icons">photo_camera</i><span>Set as Snapshot</span></a></div>');
+tools.append('<div id="elDefButton" class="tools tools-entity-def" onclick="console.log()"><a class="tooltips" href="#"><i class="material-icons">settings_backup_restore</i><span>Set as Non Temporal</span></a></div>');
 
 tools.append('<div id="selectSuperEntity" class="tools tools-select-super-entity" onclick="selectSuperEntity(event)"><a class="tooltips" href="#"><i class="material-icons">expand_less</i><span>Define super entity</span></a></div>');
 tools.append('<div id="elementNameText" class="tools tools-rename"><textarea id="elementRenameInput" cols="5" rows="2"></textarea></div>');
@@ -627,6 +627,7 @@ function displayIsaType() {
 	//selecciona por defecto el tipo de dato que ya es el atributo
 	$('#selectIsaType').val(actualElement.model.attr('customAttr/type'));
 }
+
 $('#selectIsaType').click(function () {
 	actualElement.model.attr('customAttr/type',$(this).val());
 	if ($(this).val()==1){
