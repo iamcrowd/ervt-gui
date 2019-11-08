@@ -1,0 +1,479 @@
+* {
+    box-sizing:border-box;
+}
+
+body {
+    padding:0;
+    margin:0;
+    overflow:hidden;
+}
+
+#paper {
+    z-index: -1;
+    position:absolute;
+    float:right;
+    background:#00000;
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    left:0;
+}
+
+#paper>svg {
+    overflow:visible;
+}
+
+.connection,.connection-wrap {
+    stroke:#ccc0ef;
+}
+
+
+#palette {
+    position:fixed;
+    z-index:2;
+    /*float:left;*/
+    /*background:#1d2731;*/
+    /*border:2px solid #000;*/
+    /*box-shadow:0 4px 8px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.5);*/
+    /*padding: 25px;*/
+    background-size: 104px 104px;
+    background-image: linear-gradient(to bottom, white 1px, #1d2731 1px);
+}
+
+.palette-horizontal {
+    height:105px;
+    width:301px;
+    bottom:30px;
+    left:50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.palette-vertical {
+    height:301px;
+    width:105px;
+    left:0px;
+    top:100px;
+/*-ms-transform: translateY(-50%);
+transform: translateY(-50%);*/
+}
+
+#palette-container {
+    position:fixed;
+    float:left;
+    /*background:#1d2731;*/
+    background-image:linear-gradient(black,#3d3d3d);
+    height:100%;
+    width:25%;
+    z-index:1;
+    top:0;
+    left:0;
+    overflow:auto;
+}
+
+#flyPaper {
+    position:fixed;
+    z-index:100;
+    opacity:.7;
+    pointer-events:none;
+    width:auto;
+    height:auto;
+    background-color:rgba(0,0,0,0);
+}
+
+/*para herramientas de edicion de elementos*/
+.toolbarElement {
+    z-index: 3;
+    display:none;
+    width:100px;
+    height:40px;
+    position:absolute;
+    /*background: white;*/
+    pointer-events:none;
+}
+
+.toolbar-palette {
+    width:100%;
+    /*min-width: 133px;*/
+    height:27px;
+    position:relative;
+    /*background: white;*/
+    /*pointer-events:none;*/
+    top:-27px;
+}
+
+.tools {
+    position:absolute;
+    pointer-events:all;
+    background-color:white;
+    padding:0px;
+    margin:0px;
+    color:black;
+    width:25px;
+    height:25px;
+    text-align:center;
+    line-height:14px;
+    border-radius:5px;
+    cursor:pointer;
+    opacity:.8;
+}
+
+.tools:hover {
+    opacity:1;
+}
+
+.tools-delete {
+    left:0px;
+    top:0px;
+    border-radius:10px;
+}
+
+.tools-add-attr {
+    top:0px;
+    left:50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius:10px;
+}
+
+.tools-select-super-entity {
+    top:0px;
+    left:50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius:10px;
+}
+
+
+/*.tools-clearlink {
+left:-16px;
+bottom:-4px;
+font-size:.9em;
+}*/
+
+/*.tools-newnext {
+right:-16px;
+top:-4px;
+font-size:.9em;
+}*/
+
+.tools-link {
+    right:0px;
+    top:50%;
+    border-radius:10px;
+}
+
+.tools-compactClass {
+    right:0px;
+    top:0%;
+    border-radius:10px;
+}
+
+.tools-duplicate {
+    right:0px;
+    top:100%;
+    border-radius:10px;
+}
+
+.tools-attr-type {
+    left:0px;
+    bottom:0px;
+    border-radius:10px;
+}
+
+
+#selectAttrType {
+    overflow:hidden;
+}
+
+.tools-isa-type {
+    bottom:0px;
+    left:0%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius:10px;
+}
+
+#selectIsaType {
+    overflow:hidden;
+}
+
+.tools-rename {
+    width: 100%;
+    top:50%;
+    -ms-transform:translateY(-50%);
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0);
+    display:none;
+}
+
+.tools-rename textarea {
+    width:70px;
+    resize:none;
+    overflow:hidden;
+    font-size:15px;
+    text-align:center;
+    opacity:1;
+}
+
+.tools-palette-fix {
+    right:0;
+    top:0;
+}
+
+.tools-palette-reset {
+    right:27px;
+    top:0;
+}
+
+.tools-palette-opacity {
+    right:54px;
+    top:0;
+}
+
+.tools-palette-extend {
+    right:81px;
+    top:0;
+}
+
+.tools-palette-rotate {
+    right:108px;
+    top:0;
+}
+
+/*.flyConfig {
+position:fixed;
+z-index:100;
+opacity:1;
+pointer-event:none;
+background-color:rgba(255,0,0,1);
+}
+
+.editElement {
+z-index:100;
+position:relative;
+}*/
+
+@font-face {
+  font-family: 'Galatia';
+  src: url('../fonts/Galatia.ttf');
+}
+
+.crowdforteens-header {
+    font-family: 'Galatia' !important;
+    padding: 1px !important;
+}
+
+.unco {
+	position: absolute;
+	right: 15px;
+}
+
+.menubutton {
+    /*width: 60px;
+    height: 30px;*/
+    margin-left: 30px;
+    font-size: 18px;
+    font-family: 'Impact';
+    background-color: #343a40;
+    border: none;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    outline: none;
+}
+
+.menubutton:focus {
+    outline: none;
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.menubutton:hover {
+    outline: none;
+    /*background-color: white;
+    color: #555555;*/
+    -webkit-stroke-width: 5.3px;
+    -webkit-stroke-color: #FFFFFF;
+    -webkit-fill-color: #FFFFFF;
+    text-shadow: 1px 0px 20px white;
+}
+
+.menubutton:active {
+    outline: none;
+    background-color: black;
+    /*box-shadow: 0 5px #666;*/
+    box-shadow: inset 0px 0px 0px 5px #24292d;
+    font-size: 15px;
+    text-align: center;
+    display:table-cell;
+    vertical-align:middle;
+    /*transform: translateY(-4px);*/
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+a:link{
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
+a.tooltips {
+    position: relative;
+    display: inline;
+}
+
+a.tooltips span {
+    position: absolute;
+    width:140px;
+    color: #ffffff;
+    background: #000000;
+    height: auto;
+    line-height: 20px;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 6px;
+}
+
+a.tooltips span:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-top: 8px solid #000000;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+}
+
+a:hover.tooltips span {
+    visibility: visible;
+    opacity: 0.8;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -76px;
+    z-index: 999;
+}
+
+a.tooltipsbottom {
+    position: relative;
+    display: inline;
+}
+a.tooltipsbottom span {
+    position: absolute;
+    width:140px;
+    color: #FFFFFF;
+    background: #000000;
+    height: auto;
+    line-height: 20px;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 6px;
+}
+a.tooltipsbottom span:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-bottom: 8px solid #000000;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+}
+a:hover.tooltipsbottom span {
+    visibility: visible;
+    opacity: 0.8;
+    top: 30px;
+    left: 50%;
+    margin-left: -76px;
+    z-index: 999;
+}
+
+/*****menues para los elements*****/
+#menues{
+    position: relative;
+    float: right;
+    margin-top: 69px;
+    margin-right: 0px;
+    height: 500px;
+    max-height: 500px;
+    width: 270px;
+    max-width: 270px;
+    min-width: 270px;
+    background-color: #343a40;
+    display: block;
+    overflow-y: scroll;
+    color: white;
+}
+
+#encabezadoMenu{
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#encabezadoMenu h4{
+    float: left;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#btnMinimizeMenues{
+    float: right;
+}
+
+#menuOpciones {
+    float: left;
+    position: relative;
+}
+
+#menuLink{
+    position: relative;
+    height: auto;
+    color: white;    
+}
+
+#menuClass{
+    position: relative;
+    height: auto;
+    float: left;
+}
+
+
+/*cambio de color de ports disponibles cuando se clickea un port*/
+.available-magnet {
+    fill: blue;
+}
+
+#importJSON {
+    display: none;
+    margin-left:200px;
+    margin-top:130px;
+    position: absolute;
+    max-height: 500px;
+    max-width: : 500px;
+    overflow-y: scroll;
+}
