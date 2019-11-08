@@ -1,2 +1,2 @@
-# ERvt-gui
+### ERvt visual palette
 
