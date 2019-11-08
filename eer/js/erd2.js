@@ -163,7 +163,7 @@ function getAllElement() {
         var id = cid.match(/\d+/g)[0];
         var numID = new Number(id);
 				var dataType = element.attr('customAttr/type');
-				
+
         switch (type) {
             case "Entity":
                 var entity = '{"name":"'+name+'","id":'+numID+',"weak":false}';
@@ -436,12 +436,12 @@ var actualRenameElement = null;
 
 var tools = $('<div class="toolbar">');
 tools.append('<div id="elementDeleteButton" class="tools tools-delete" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Remove the element</span></a></div>');
-//tools.append('<div class="tools tools-clearlink">C</div>');
-//tools.append('<div class="tools tools-newnext">N</div>');
-tools.append('<div id="elementAddAttr" class="tools tools-add-attr" onclick="addAttr(event)"><a class="tooltips" href="#"><i class="material-icons">vignette</i><span>Add attribute connected</span></a></div>');
+
+tools.append('<div id="elTempButton" class="tools tools-entity-temp" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Set as Temporal</span></a></div>');
+tools.append('<div id="elSnapButton" class="tools tools-entity-snap" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Set as Snapshot</span></a></div>');
+tools.append('<div id="elDefButton" class="tools tools-entity-def" onclick="elementDelete()"><a class="tooltips" href="#"><i class="material-icons">delete_forever</i><span>Set as Non Temporal</span></a></div>');
+
 tools.append('<div id="selectSuperEntity" class="tools tools-select-super-entity" onclick="selectSuperEntity(event)"><a class="tooltips" href="#"><i class="material-icons">expand_less</i><span>Define super entity</span></a></div>');
-tools.append('<div id="elementLinkButton" class="tools tools-link" onmousedown="elementLink(event)"><a class="tooltips" href="#"><i class="material-icons">trending_up</i><span>Connect to other element</span></a></div>');
-tools.append('<div id="elementDuplicateButton" class="tools tools-duplicate" onclick="elementDuplicate()""><a class="tooltips" href="#"><i class="material-icons">file_copy</i><span>Duplicate the element</span></a></div>');
 tools.append('<div id="elementNameText" class="tools tools-rename"><textarea id="elementRenameInput" cols="5" rows="2"></textarea></div>');
 tools.append('<div id="elementAttrType" class="tools tools-attr-type"><a class="tooltips" href="#"><i class="material-icons" onclick="displayAttrType()">title</i><span>Change datatype of attribute</span></a><select id="selectAttrType" size="3"><option value="varchar">Texto</option><option value="integer">Entero</option><option value="boolean">Booleano</option></select></div>');
 tools.append('<div id="isaType" class="tools tools-isa-type"><a class="tooltips" href="#"><i class="material-icons" onclick="displayIsaType()">title</i><span>Set disjoint inheritance</span></a><select id="selectIsaType" size="3"><option value="1">Disjunta</option><option value="2">Solapada</option><option value="3">Union</option></select></div>');
@@ -1578,3 +1578,51 @@ connectLink(link4, ent2,attk4);
 connectLink(link1, ent3,attk1);
 connectLink(link2, ent4,attk2);
 */
+
+// Menu for editing properties of each ER primitive
+
+$('body').append('<div id="menues"><div id=encabezadoMenu></div><div id=menuOpciones></div></div>');
+
+$('#menues').focusin(function(){
+    hideElementTools();
+});
+
+$('#encabezadoMenu').append('<h4>Opciones</h4><input id="btnMinimizeMenues" name="minimizeMenues" onclick=minimizeMenues() type="button" value="-">');
+function minimizeMenues(){
+    if ($('#btnMinimizeMenues').val() == '-'){
+        $('#menuOpciones').css({
+            display: 'none'
+        });
+        $('#menues').css({
+            height: 35
+        });
+        $('#btnMinimizeMenues').val('+');
+    }else{
+        $('#menuOpciones').css({
+            display: 'block'
+        });
+        $('#menues').css({
+            height: 500
+        });
+        $('#btnMinimizeMenues').val('-');
+    }
+}
+
+//para evitar que el puntero quede focuseando en un input cuando se selecciona un elemento del grafo.
+$('#paper').mouseup(function(evt){
+    if (evt.target.tagName=='tspan'){
+        $(document.activeElement).blur();
+    }
+});
+
+//menu con opciones de clases
+$('#menuOpciones').append('<div id="menuClass"></div>');
+$('#menuClass').append('<div id="changeNameClass"><input id="classRenameInput" type="text"></div>');
+$("#menuClass").append('<div id="listAttributes"></div>');
+$('#menuClass').append('<input id="btnAddAttributeClass" name="addAttribute" onclick=addAttribute() type="button" value="add attr">');
+$("#menuClass").append('<div id="listMethods"></div>');
+$('#menuClass').append('<input id="btnAddMethodClass" name="addMethod" onclick=addMethod() type="button" value="add method">');
+$('#menuClass').append('<input id="btnConfirmMenuClass" name="done" onclick=confirmMenuClass() type="button" value="done"><input id="btnCancelMenuClass" name="done" onclick=cancelMenuClass() type="button" value="cancel">');
+$('#menuClass').css({
+    display: 'none'
+});
