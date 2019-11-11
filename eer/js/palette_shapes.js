@@ -71,6 +71,7 @@ erd.Entity.define('erd.CustomEntity', {
 		'.inner': {
 		}
 	},
+	temporality: '',
 	size: {
 		width: 80,
 		height: 40
