@@ -41,7 +41,6 @@ function sortPalette(horizontal, size, elements) {
 
 var erd = joint.shapes.erd;
 
-
 erd.Entity.define('erd.CustomEntity', {
 	position: {
 		x: gridSize * 0 + gridSize / 2 - 40,
@@ -59,14 +58,15 @@ erd.Entity.define('erd.CustomEntity', {
 			}
 		},
 		'tempRect': {
-			fill: 'lightgreen',
+			fill: 'darkOrange',
 			stroke: '#ffffff',
+			strokeWidth: 1.5,
 			ref:'outer',
-			width: 20,
+			width: 16,
       refHeight: '100%',
 			ref:'outer',
 			refX: '100%',
-			x:-20,
+			x:-16,
 			'display':'none',
 
 		},
@@ -86,6 +86,8 @@ erd.Entity.define('erd.CustomEntity', {
 		},
 		'textTemp': {
 			ref:'tempRect',
+			fontSize: 12,
+			fontWeight:'bold',
 			fill: '#333333',
 			textVerticalAnchor: 'middle',
 			textAnchor: 'middle',
