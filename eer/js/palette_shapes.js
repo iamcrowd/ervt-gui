@@ -62,10 +62,11 @@ erd.Entity.define('erd.CustomEntity', {
 			fill: 'lightgreen',
 			stroke: '#ffffff',
 			ref:'outer',
-			refWidth: '20%',
-            refHeight: '100%',
+			width: 20,
+      refHeight: '100%',
 			ref:'outer',
-			refX: '80%',
+			refX: '100%',
+			x:-20,
 			'display':'none',
 
 		},
@@ -94,7 +95,7 @@ erd.Entity.define('erd.CustomEntity', {
 		}
 	},
 	size: {
-		width: 100,
+		width: 80,
 		height: 40
 	}
 }, {

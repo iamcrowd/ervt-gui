@@ -472,7 +472,7 @@ paper.on('element:pointerdblclick', function (cellView, evt) {
 		$('#elementNameText').css({
 			display: 'block'
 		});
-		$('#elementRenameInput').val(cellView.model.attr('text/text'));
+		$('#elementRenameInput').val(cellView.model.attr('textName/text'));
 		$('#elementRenameInput').focus();
 		actualRenameElement = cellView;
 	}
@@ -563,6 +563,7 @@ function hideRenameText() {
 	});
 	if (actualRenameElement != null) {
 		changeName(actualRenameElement, $('#elementRenameInput').val());
+		resizeElementFromLabel(actualRenameElement);
 	}
 	$('#elementRenameInput').val("");
 }
@@ -642,7 +643,7 @@ $('#selectIsaType').click(function () {
 
 function changeName(elementView, value) {
 	if (value.length > 0) {
-		elementView.model.attr('text/text', value);
+		elementView.model.attr('textName/text', value);
 	}
 }
 
