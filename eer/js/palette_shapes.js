@@ -41,42 +41,83 @@ function sortPalette(horizontal, size, elements) {
 
 var erd = joint.shapes.erd;
 
+
 erd.Entity.define('erd.CustomEntity', {
 	position: {
 		x: gridSize * 0 + gridSize / 2 - 40,
 		y: gridSize * 0 + gridSize / 2 - 20
 	},
+	temporality:'',
 	attrs: {
-		text: {
+		'textName': {
 			fill: '#ffffff',
 			text: 'Entity',
+			refX: '0%', refX2:0 ,
 			'letter-spacing': 0,
 			style: {
 				'text-shadow': '1px 0 1px #333333'
 			}
 		},
-		'.outer': {
+		'tempRect': {
+			fill: 'lightgreen',
+			stroke: '#ffffff',
+			ref:'outer',
+			refWidth: '20%',
+            refHeight: '100%',
+			ref:'outer',
+			refX: '80%',
+			'display':'none',
+
+		},
+		'outer': {
 			fill: '#083c5d',
-			stroke: 'none',
+			stroke: '#ffffff',
+			refWidth: '100%',
+            refHeight: '100%',
 			filter: {
 				name: 'dropShadow',
 				args: {
 					dx: 0.5,
 					dy: 2,
-					blur: 2,
 					color: '#333333'
 				}
 			}
 		},
-		'.inner': {
+		'textTemp': {
+			ref:'tempRect',
+			fill: '#333333',
+			textVerticalAnchor: 'middle',
+			textAnchor: 'middle',
+			'display':'none',
+		},
+		'inner': {
 		}
 	},
-	temporality: '',
 	size: {
-		width: 80,
+		width: 100,
 		height: 40
 	}
-});
+}, {
+
+		markup:[
+		{tagName: 'rect',
+		selector: 'outer'
+		},
+		{tagName: 'rect',
+		selector: 'tempRect'
+		},
+		{tagName: 'polygon',
+		selector: 'inner'
+		},
+		{tagName: 'text',
+		selector: 'textName'
+		},
+		{tagName: 'text',
+		selector: 'textTemp'
+		},
+
+		]}
+  );
 
 var entity = new erd.CustomEntity();
 
