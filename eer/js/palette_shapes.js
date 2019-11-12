@@ -229,7 +229,7 @@ Custom Normal Attribute. Adding Temporal Timestamps.
 */
 erd.Normal.define('erd.CustomNormal',{
 		position: {
-			x: gridSize * 2 + gridSize / 2 - 30,
+			x: gridSize * 3 + gridSize / 2 - 30,
 			y: gridSize * 0 + gridSize / 2 - 20
 		},
 		temporality:'',
@@ -258,9 +258,6 @@ erd.Normal.define('erd.CustomNormal',{
 				'display':'none',
 			},
 			'inner': {
-				stroke: '#D35400', 'stroke-width': 2,
-				cx: 0, cy: 0, rx: 45, ry: 20,
-				fill: '#E67E22', display: 'none'
 			},
 			'outer': {
 				stroke: '#D35400', 'stroke-width': 2,
@@ -312,6 +309,94 @@ erd.Normal.define('erd.CustomNormal',{
 
 var attr = new erd.CustomNormal();
 
+
+/*
+Custom Key Attribute. Adding Temporal Timestamps.
+*/
+erd.Key.define('erd.CustomKeyAttr',{
+		position: {
+			x: gridSize * 3 + gridSize / 2 - 30,
+			y: gridSize * 0 + gridSize / 2 - 20
+		},
+		temporality:'',
+		attrs: {
+			'textName': {
+				ref:'outer',
+				fill: '#ffffff',
+				text: 'K',
+				textVerticalAnchor: 'middle',
+				textAnchor: 'middle',
+				fontWeight:'bold',
+			},
+			'ellipse': {
+					transform: 'translate(25, 25)'
+			},
+			'tempRect': {
+				fill: 'darkOrange',
+				stroke: '#ffffff',
+				strokeWidth: 1.5,
+				ref:'outer',
+				width: 20,
+				refHeight: '35%',
+				ref:'outer',
+				refX: '100%',
+				x:-20,
+				'display':'none',
+			},
+			'inner': {
+			},
+			'outer': {
+				stroke: 'none', 'stroke-width': 2,
+				cx: 0, cy: 0, rx: 30, ry: 20,
+				fill: '#e7b51d'
+			},
+			customAttr: {
+				type: 'varchar'
+			},
+			'textTemp': {
+				ref:'tempRect',
+				fontSize: 12,
+				'text-decoration': '',
+				fontWeight:'bold',
+				fill: '#333333',
+				textVerticalAnchor: 'middle',
+				textAnchor: 'middle',
+				'display':'none',
+			}
+		},
+		size: {
+			width: 50,
+			height: 30
+		}
+	}, {
+				markup:[
+					{
+						tagName: 'ellipse',
+						selector: 'outer'
+					},
+					{
+						tagName: 'ellipse',
+						selector: 'inner'
+					},
+					{
+						tagName: 'rect',
+						selector: 'tempRect'
+					},
+					{
+						tagName: 'text',
+						selector: 'textName'
+					},
+					{
+						tagName: 'text',
+						selector: 'textTemp'
+					},
+				]
+			}
+		);
+
+var attrKey = new erd.CustomKeyAttr();
+
+
 var temporalLink = new joint.shapes.standard.Link();
 
 temporalLink.attr({
@@ -329,44 +414,6 @@ temporalLink.attr({
 		}
 });
 
-
-var attrKey = new erd.Key({
-		position: {
-			x: gridSize * 3 + gridSize / 2 - 30,
-			y: gridSize * 0 + gridSize / 2 - 20
-		},
-		attrs: {
-			text: {
-				fill: '#ffffff',
-				text: 'Key Attr.',
-				'letter-spacing': 0,
-				style: {
-					'font-size': '10px',
-					'text-shadow': '1px 0 1px #333333'
-				}
-			},
-			'.outer': {
-				fill: '#e7b51d',
-				stroke: 'none',
-				filter: {
-					name: 'dropShadow',
-					args: {
-						dx: 0,
-						dy: 2,
-						blur: 2,
-						color: '#222138'
-					}
-				}
-			},
-			customAttr: {
-				type: 'varchar'
-			}
-		},
-		size: {
-			width: 60,
-			height: 40
-		},
-	});
 
 var isa = new erd.ISA({
 		position: {
