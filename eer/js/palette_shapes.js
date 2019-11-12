@@ -17,7 +17,7 @@ var gridSize = 100;
 function sortPalette(horizontal, size, elements) {
 	var col = 0;
 	var row = 0;
-	//var elements = paletteElements();
+
 	elements.forEach(function (element) {
 		element.attributes.position.x = gridSize * col + gridSize / 2 - element.attributes.size.width / 2;
 		element.attributes.position.y = gridSize * row + gridSize / 2 - element.attributes.size.height / 2;
@@ -103,87 +103,69 @@ erd.Entity.define('erd.CustomEntity', {
 }, {
 
 		markup:[
-		{tagName: 'rect',
-		selector: 'outer'
-		},
-		{tagName: 'rect',
-		selector: 'tempRect'
-		},
-		{tagName: 'polygon',
-		selector: 'inner'
-		},
-		{tagName: 'text',
-		selector: 'textName'
-		},
-		{tagName: 'text',
-		selector: 'textTemp'
-		},
-
-		]}
-  );
+			{
+				tagName: 'rect',
+				selector: 'outer'
+			},
+			{
+				tagName: 'rect',
+				selector: 'tempRect'
+			},
+			{
+				tagName: 'polygon',
+				selector: 'inner'
+			},
+			{
+				tagName: 'text',
+				selector: 'textName'
+			},
+			{
+				tagName: 'text',
+				selector: 'textTemp'
+			},
+		]
+	}
+);
 
 var entity = new erd.CustomEntity();
 
-//entity.position(gridSize * 0 + gridSize / 2 - 40, gridSize * 0 + gridSize / 2 - 20);
-//entity.resize(80, 40);
-/*entity.attr({
-label: {
-text: 'Entity'
-}
-});*/
-
-/*var entity = new erd.Entity({
-position: {
-x: gridSize * 0 + gridSize / 2 - 40,
-y: gridSize * 0 + gridSize / 2 - 20
-},
-attrs: {
-text: {
-fill: '#ffffff',
-text: 'Entity',
-'letter-spacing': 0,
-style: {
-'text-shadow': '1px 0 1px #333333'
-}
-},
-'.outer, .inner': {
-fill: '#083c5d',
-stroke: 'none',
-filter: {
-name: 'dropShadow',
-args: {
-dx: 0.5,
-dy: 2,
-blur: 2,
-color: '#333333'
-}
-}
-},
-},
-size: {
-width: 80,
-height: 40
-},
-});*/
-
-var rel = new erd.Relationship({
+erd.Relationship.define('erd.CustomRelationship',{
 		position: {
 			x: gridSize * 1 + gridSize / 2 - 30,
 			y: gridSize * 0 + gridSize / 2 - 30
 		},
+		temporality:'',
 		attrs: {
-			text: {
+			'textName': {
+				ref:'outer',
 				fill: '#ffffff',
-				text: 'Relationship',
-				'letter-spacing': 0,
-				style: {
-					'font-size': '10px',
-					'text-shadow': '1px 0 1px #333333'
-				}
+				text: 'R',
+				textVerticalAnchor: 'middle',
+				textAnchor: 'middle',
+				fontWeight:'bold',
 			},
-			'.outer': {
-				fill: '#648040',
-				stroke: 'none',
+			'tempRect': {
+				fill: 'darkOrange',
+				stroke: '#ffffff',
+				strokeWidth: 1.5,
+				ref:'outer',
+				width: 20,
+				refHeight: '25%',
+				ref:'outer',
+				refX: '100%',
+				x:-20,
+				'display':'none',
+			},
+			'inner': {
+					fill: 'darkGreen', stroke: '#ffffff', 'stroke-width': 1.5,
+					points: '40,5 75,40 40,75 5,40',
+					display: 'none'
+			},
+			'outer': {
+				fill: 'darkGreen',
+				stroke: '#ffffff',
+				'stroke-width': 1.5,
+				points: '40,0 80,40 40,80 0,40',
 				filter: {
 					name: 'dropShadow',
 					args: {
@@ -193,13 +175,48 @@ var rel = new erd.Relationship({
 						color: '#333333'
 					}
 				}
+			},
+			'textTemp': {
+				ref:'tempRect',
+				fontSize: 12,
+				fontWeight:'bold',
+				fill: '#333333',
+				textVerticalAnchor: 'middle',
+				textAnchor: 'middle',
+				'display':'none',
 			}
 		},
 		size: {
 			width: 60,
 			height: 60
-		},
-	});
+		}
+	}, {
+				markup:[
+					{
+						tagName: 'polygon',
+						selector: 'outer'
+					},
+					{
+						tagName: 'polygon',
+						selector: 'inner'
+					},
+					{
+						tagName: 'rect',
+						selector: 'tempRect'
+					},
+					{
+						tagName: 'text',
+						selector: 'textName'
+					},
+					{
+						tagName: 'text',
+						selector: 'textTemp'
+					},
+				]
+			}
+		);
+
+var rel = new erd.CustomRelationship();
 
 var attr = new erd.Normal({
 		position: {
