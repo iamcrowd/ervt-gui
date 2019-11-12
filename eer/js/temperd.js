@@ -135,3 +135,75 @@ function switchConstraint(link) {
 				});
 		}
 }
+
+/*
+Get JSON Objects for each ERvt primitive
+*/
+function getTemporalElements() {
+		var entities = [];
+    var relationships = [];
+    var attributes = [];
+    var isa = [];
+    var connectors = [];
+    var elements = graphMain.getElements();
+
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        var type = element.attributes.type;
+        var name = element.attr('textName/text');
+				name = name.replace('\n',"\\n");
+        var cid = element.cid;
+        var id = cid.match(/\d+/g)[0];
+        var numID = new Number(id);
+				var dataType = element.attr('customAttr/type');
+
+        switch (type) {
+            case "erd.CustomEntity":
+								var entity = '';
+								if (element.attributes.temporality == 'T'){
+                		entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{x}}';
+								} else if (element.attributes.temporality == 'S') {
+											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{x}}';
+								} else {
+											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "", "position":{x}}';
+								}
+                entities.push(entity);
+                break;
+
+        }
+  }
+	return [entities];
+}
+
+/*
+Export JSON object including a Temporal ER
+*/
+function exportJSON() {
+    var allElement = getAllElement();
+    var entities = allElement[0];
+    var attributes = allElement[1];
+    var links = allElement[2];
+    var elements = graphMain.getElements();
+    var links = graphMain.getLinks();
+    for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        var cardinality = "";
+        var labels = link.attributes.labels;
+        if (labels != null) {
+            cardinality = labels[0].attrs.text.text;
+        }
+
+        var element1 = graphMain.getCell(link.source().id);
+        var element1id = element1.cid.match(/\d+/g)[0];
+        var numElement1id = new Number(element1id);
+        var element2 = graphMain.getCell(link.target().id);
+        var element2id = element2.cid.match(/\d+/g)[0];
+        var numElement2id = new Number(element2id);
+		var isTotal = link.attr('customAttr/total');
+		var direction = (link.attr('customAttr/direction') == true);
+		var isInh = (link.attr('customAttr/inheritance') == true);
+        connectors.push('{"total": '+isTotal+',"element1": '+numElement1id+',"element2": '+numElement2id+',"cardinality2": "'+cardinality+'","name": "","inheritance": '+isInh+',"cardinality1": "","direction": '+direction+'}');
+    }
+    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"links":['+links+']}';
+	 console.log(json);
+}
