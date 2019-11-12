@@ -56,9 +56,9 @@ function getSpecificType(elementModel) {
 		resultType = 'Relationship';
     } else if (type === 'erd.IdentifyingRelationship') {
         resultType = 'WeakRelationship';
-	} else if (type === 'erd.Normal') {
+	} else if (type === 'erd.Normal' || type === 'erd.CustomNormal') {
 		resultType = 'Attribute';
-    } else if (type === 'erd.Key') {
+	} else if (type === 'erd.Key' || type === 'erd.CustomKeyAttr') {
         resultType = 'KeyAttribute';
 	} else if (type === 'erd.Multivalued') {
         resultType = 'MultivaluedAttribute';
@@ -81,7 +81,7 @@ function getType(elementModel) {
 		resultType = 'Entity';
 	} else if (type === 'erd.CustomRelationship' || type === 'erd.IdentifyingRelationship') {
 		resultType = 'Relationship';
-	} else if (type === 'erd.CustomNormal' || type === 'erd.Normal' || type === 'erd.Key' || type === 'erd.Multivalued' || type === 'erd.Derived' || type === 'erd.WeakKey') {
+	} else if (type === 'erd.CustomNormal' || type === 'erd.Normal' || type === 'erd.Key' || type === 'erd.CustomKeyAttr' || type === 'erd.Multivalued' || type === 'erd.Derived' || type === 'erd.WeakKey') {
 		resultType = 'Attribute';
 	} else if (type === 'erd.Inheritance') {
 		resultType = 'Inheritance';

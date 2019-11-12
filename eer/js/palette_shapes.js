@@ -77,7 +77,7 @@ erd.Entity.define('erd.CustomEntity', {
 			fill: '#083c5d',
 			stroke: '#ffffff',
 			refWidth: '100%',
-            refHeight: '100%',
+      refHeight: '100%',
 			filter: {
 				name: 'dropShadow',
 				args: {
@@ -157,20 +157,18 @@ erd.Relationship.define('erd.CustomRelationship',{
 				ref:'outer',
 				width: 20,
 				refHeight: '25%',
-				ref:'outer',
 				refX: '100%',
 				x:-20,
 				'display':'none',
 			},
 			'inner': {
-					/*fill: 'darkGreen', stroke: '#ffffff', 'stroke-width': 1.5,
-					points: '40,5 75,40 40,75 5,40',
-					display: 'none'*/
 			},
 			'outer': {
 				fill: 'darkGreen',
 				stroke: '#ffffff',
 				'stroke-width': 1.5,
+				refWidth: '100%',
+				refHeight: '100%',
 				points: '30,0 60,30 30,60 0,30',
 				filter: {
 					name: 'dropShadow',
@@ -262,7 +260,9 @@ erd.Normal.define('erd.CustomNormal',{
 			'outer': {
 				stroke: '#D35400', 'stroke-width': 2,
 				cx: 0, cy: 0, rx: 30, ry: 20,
-				fill: '#E67E22'
+				fill: '#E67E22',
+				refWidth: '100%',
+				refHeight: '100%',
 			},
 			customAttr: {
 				type: 'varchar'
@@ -348,7 +348,9 @@ erd.Key.define('erd.CustomKeyAttr',{
 			'outer': {
 				stroke: 'none', 'stroke-width': 2,
 				cx: 0, cy: 0, rx: 30, ry: 20,
-				fill: '#e7b51d'
+				fill: '#e7b51d',
+				refWidth: '100%',
+				refHeight: '100%',
 			},
 			customAttr: {
 				type: 'varchar'
