@@ -41,6 +41,9 @@ function sortPalette(horizontal, size, elements) {
 
 var erd = joint.shapes.erd;
 
+/*
+Custom Entity. Adding Temporal Timestamps.
+*/
 erd.Entity.define('erd.CustomEntity', {
 	position: {
 		x: gridSize * 0 + gridSize / 2 - 40,
@@ -129,10 +132,13 @@ erd.Entity.define('erd.CustomEntity', {
 
 var entity = new erd.CustomEntity();
 
+/*
+Custom Relationship. Adding Temporal Timestamps.
+*/
 erd.Relationship.define('erd.CustomRelationship',{
 		position: {
-			x: gridSize * 1 + gridSize / 2 - 30,
-			y: gridSize * 0 + gridSize / 2 - 30
+			x: gridSize * 2 + gridSize / 2 - 30,
+			y: gridSize * 0 + gridSize / 2 - 20
 		},
 		temporality:'',
 		attrs: {
@@ -157,15 +163,15 @@ erd.Relationship.define('erd.CustomRelationship',{
 				'display':'none',
 			},
 			'inner': {
-					fill: 'darkGreen', stroke: '#ffffff', 'stroke-width': 1.5,
+					/*fill: 'darkGreen', stroke: '#ffffff', 'stroke-width': 1.5,
 					points: '40,5 75,40 40,75 5,40',
-					display: 'none'
+					display: 'none'*/
 			},
 			'outer': {
 				fill: 'darkGreen',
 				stroke: '#ffffff',
 				'stroke-width': 1.5,
-				points: '40,0 80,40 40,80 0,40',
+				points: '30,0 60,30 30,60 0,30',
 				filter: {
 					name: 'dropShadow',
 					args: {
@@ -218,6 +224,112 @@ erd.Relationship.define('erd.CustomRelationship',{
 
 var rel = new erd.CustomRelationship();
 
+/*
+Custom Normal Attribute. Adding Temporal Timestamps.
+*/
+erd.Normal.define('erd.CustomNormal',{
+		position: {
+			x: gridSize * 2 + gridSize / 2 - 30,
+			y: gridSize * 0 + gridSize / 2 - 20
+		},
+		temporality:'',
+		attrs: {
+			'textName': {
+				ref:'outer',
+				fill: '#ffffff',
+				text: 'A',
+				textVerticalAnchor: 'middle',
+				textAnchor: 'middle',
+				fontWeight:'bold',
+			},
+			'ellipse': {
+					transform: 'translate(25, 25)'
+			},
+			'tempRect': {
+				fill: 'darkOrange',
+				stroke: '#ffffff',
+				strokeWidth: 1.5,
+				ref:'outer',
+				width: 20,
+				refHeight: '35%',
+				ref:'outer',
+				refX: '100%',
+				x:-20,
+				'display':'none',
+			},
+			'inner': {
+				stroke: '#D35400', 'stroke-width': 2,
+				cx: 0, cy: 0, rx: 45, ry: 20,
+				fill: '#E67E22', display: 'none'
+			},
+			'outer': {
+				stroke: '#D35400', 'stroke-width': 2,
+				cx: 0, cy: 0, rx: 30, ry: 20,
+				fill: '#E67E22'
+			},
+			customAttr: {
+				type: 'varchar'
+			},
+			'textTemp': {
+				ref:'tempRect',
+				fontSize: 12,
+				fontWeight:'bold',
+				fill: '#333333',
+				textVerticalAnchor: 'middle',
+				textAnchor: 'middle',
+				'display':'none',
+			}
+		},
+		size: {
+			width: 50,
+			height: 30
+		}
+	}, {
+				markup:[
+					{
+						tagName: 'ellipse',
+						selector: 'outer'
+					},
+					{
+						tagName: 'ellipse',
+						selector: 'inner'
+					},
+					{
+						tagName: 'rect',
+						selector: 'tempRect'
+					},
+					{
+						tagName: 'text',
+						selector: 'textName'
+					},
+					{
+						tagName: 'text',
+						selector: 'textTemp'
+					},
+				]
+			}
+		);
+
+var attr = new erd.CustomNormal();
+
+var temporalLink = new joint.shapes.standard.Link();
+
+temporalLink.attr({
+		line: {
+				stroke: 'gray',
+				strokeWidth: 2,
+				strokeDasharray: '5 5',
+				sourceMarker: {},
+				targetMarker: {
+						'd': 'M 15 -5 L 15 5 L 0 0 z'
+				}
+		},
+		customAttr:{
+				constraintType: ''
+		}
+});
+
+/*
 var attr = new erd.Normal({
 		position: {
 			x: gridSize * 2 + gridSize / 2 - 30,
@@ -255,6 +367,8 @@ var attr = new erd.Normal({
 			height: 40
 		},
 	});
+
+*/
 
 var attrKey = new erd.Key({
 		position: {
