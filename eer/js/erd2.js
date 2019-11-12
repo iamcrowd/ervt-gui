@@ -52,7 +52,7 @@ function getSpecificType(elementModel) {
 		resultType = 'Entity';
     } else if (type === 'erd.WeakEntity') {
         resultType = 'WeakEntity';
-	} else if (type === 'erd.Relationship') {
+	} else if (type === 'erd.CustomRelationship') {
 		resultType = 'Relationship';
     } else if (type === 'erd.IdentifyingRelationship') {
         resultType = 'WeakRelationship';
@@ -79,9 +79,9 @@ function getType(elementModel) {
 	var resultType;
 	if (type === 'erd.Entity' || type === 'erd.CustomEntity' || type === 'erd.WeakEntity') {
 		resultType = 'Entity';
-	} else if (type === 'erd.Relationship' || type === 'erd.IdentifyingRelationship') {
+	} else if (type === 'erd.CustomRelationship' || type === 'erd.IdentifyingRelationship') {
 		resultType = 'Relationship';
-	} else if (type === 'erd.Normal' || type === 'erd.Key' || type === 'erd.Multivalued' || type === 'erd.Derived' || type === 'erd.WeakKey') {
+	} else if (type === 'erd.CustomNormal' || type === 'erd.Normal' || type === 'erd.Key' || type === 'erd.Multivalued' || type === 'erd.Derived' || type === 'erd.WeakKey') {
 		resultType = 'Attribute';
 	} else if (type === 'erd.Inheritance') {
 		resultType = 'Inheritance';
@@ -138,6 +138,10 @@ function canConnect(cellViewS, cellViewT) {
 	} else {
 		canConnect = false;
 	}
+
+if(specificSourceType=='Entity' && specificTargetType=='Entity'){
+	canConnect = true;
+}
 	return canConnect;
 }
 
@@ -647,7 +651,6 @@ function changeName(elementView, value) {
 	}
 }
 
-
 function addAttr(e){
 	var entity = actualElement;
 	hideElementTools();
@@ -754,9 +757,9 @@ paper.on('cell:pointerdown blank:pointerdown', function (elementView, evt) {
 				var link = links[i];
 				setDirection(link,false);
 				if (link == linkToSuperEntity) {
-					setInheritance(link,false);
-				} else {
 					setInheritance(link,true);
+				} else {
+					setInheritance(link,false);
 				}
 			}
 		}
@@ -979,7 +982,7 @@ var createLabel = function (txt) {
 			text: {
 				text: txt,
 				fill: 'black',
-				fontSize: 20
+				fontSize: 14
 			},
 			rect: {
 				fill: 'white'
@@ -987,7 +990,7 @@ var createLabel = function (txt) {
 		},
 		position: {
 			distance: 0.5,
-			offset: 15
+			offset: -15
 		}
 	}
 	return label;
@@ -1021,12 +1024,22 @@ paper.on({
 			// link.source(elementAbove);
 			// link.target(elementBelow);
 			// link.addTo(graphMain);
-			var newLink = createLink();
-			connectLink(newLink, elementBelow, elementAbove);
-			if (getType(elementBelow) != 'Attribute' && getType(elementAbove) != 'Attribute' &&
-				getType(elementBelow) != 'Inheritance' && getType(elementAbove) != 'Inheritance') {
-				newLink.appendLabel(createLabel('1'));
+			var newLink;
+			if (getSpecificType(elementBelow) == 'Entity' && getType(elementAbove) == 'Entity') {
+				newLink = temporalLink.clone();
+				connectLink(newLink, elementBelow, elementAbove);
+				newLink.addTo(graphMain);
+				addTemporalTools(newLink);
+				newLink.appendLabel(createLabel('addConstraint'));
+			}else{
+				newLink = createLink();
+				connectLink(newLink, elementBelow, elementAbove);
+				if (getType(elementBelow) != 'Attribute' && getType(elementAbove) != 'Attribute' &&
+					getType(elementBelow) != 'Inheritance' && getType(elementAbove) != 'Inheritance') {
+					newLink.appendLabel(createLabel('1'));
+				}
 			}
+
 
 			// Add remove button to the link.
 			// var tools = new joint.dsia.ToolsView({
@@ -1321,7 +1334,7 @@ function checkAttribute(element, links, currentElement, attributeArray) {
 	// for (var i = 0; i < links.length; i++) {
 		// link = links[i];
 		// var elm = (link.source().id != element.id ? graphMain.getCell(link.source().id) : graphMain.getCell(link.target().id));
-		// if (getSpecificType(elm) == 'Entity' || getSpecificType(elm) == 'Relationship') {
+		// if (getSpecificType(elm) == 'Entity' || getSpecificType(elm) == 'erd.Relationship') {
 			//	markElement(element,'sintactico');
 			// return;
 		// }
