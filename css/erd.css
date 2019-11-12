@@ -96,7 +96,6 @@ display:none;
 width:100px;
 height:40px;
 position:absolute;
-/*background: white;*/
 pointer-events:none;
 }
 
@@ -111,19 +110,19 @@ top:-27px;
 }
 
 .tools {
-position:absolute;
-pointer-events:all;
-background-color:white;
-padding:0px;
-margin:0px;
-color:black;
-width:25px;
-height:25px;
-text-align:center;
-line-height:14px;
-border-radius:5px;
-cursor:pointer;
-opacity:.8;
+  position:absolute;
+  pointer-events:all;
+  background-color:white;
+  padding:0px;
+  margin:0px;
+  color:black;
+  width:25px;
+  height:25px;
+  text-align:center;
+  line-height:14px;
+  border-radius:5px;
+  cursor:pointer;
+  opacity:.8;
 }
 
 .tools:hover {
@@ -445,7 +444,7 @@ a:hover.tooltipsbottom span {
 }
 
 /*****menues para los elements*****/
-#menues{
+/*#menues{
     position: relative;
     float: right;
     margin-top: 69px;
@@ -475,7 +474,7 @@ a:hover.tooltipsbottom span {
 
 #btnMinimizeMenues{
     float: right;
-}
+}*/
 
 #menuOpciones {
     float: left;

@@ -1602,6 +1602,7 @@ $('#menues').focusin(function(){
     hideElementTools();
 });
 
+/*
 $('#encabezadoMenu').append('<h4>Opciones</h4><input id="btnMinimizeMenues" name="minimizeMenues" onclick=minimizeMenues() type="button" value="-">');
 function minimizeMenues(){
     if ($('#btnMinimizeMenues').val() == '-'){
@@ -1622,6 +1623,7 @@ function minimizeMenues(){
         $('#btnMinimizeMenues').val('-');
     }
 }
+*/
 
 //para evitar que el puntero quede focuseando en un input cuando se selecciona un elemento del grafo.
 $('#paper').mouseup(function(evt){
