@@ -73,7 +73,6 @@ joint.linkTools.ConstraintButton = joint.linkTools.Button.extend({
         distance: 60,
         action: function(evt) {
             switchConstraint(this.model);
-            //alert('View id: ' + this.id + '\n' + 'Model id: ' + this.model.id);
         },
         markup: [{
             tagName: 'circle',
@@ -97,8 +96,8 @@ joint.linkTools.ConstraintButton = joint.linkTools.Button.extend({
 });
 
 function switchConstraint(link) {
-	var txt =  link.attr('customAttr/constraintType');
-	if (txt===''){
+	var label_txt =  link.attr('customAttr/constraintType');
+	if (label_txt ===''){
 		link.attr('customAttr/constraintType', 'TEX');
 		link.label(0, {
 				attrs: {
@@ -107,5 +106,32 @@ function switchConstraint(link) {
 						}
 				}
 		});
-	}
+	} else if (label_txt === 'TEX') {
+			link.attr('customAttr/constraintType', 'DEV');
+			link.label(0, {
+				attrs: {
+						text: {
+								text: 'DEV'
+						}
+				}
+		});
+	} else if (label_txt === 'DEV') {
+			link.attr('customAttr/constraintType', 'DEX-');
+			link.label(0, {
+				attrs: {
+						text: {
+							text: 'DEX-'
+						}
+					}
+				});
+		} else if (label_txt === 'DEX-') {
+			link.attr('customAttr/constraintType', 'TEX');
+			link.label(0, {
+				attrs: {
+						text: {
+							text: 'TEX'
+						}
+					}
+				});
+		}
 }

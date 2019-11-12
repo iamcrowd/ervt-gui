@@ -329,46 +329,6 @@ temporalLink.attr({
 		}
 });
 
-/*
-var attr = new erd.Normal({
-		position: {
-			x: gridSize * 2 + gridSize / 2 - 30,
-			y: gridSize * 0 + gridSize / 2 - 20
-		},
-		attrs: {
-			text: {
-				fill: '#ffffff',
-				text: 'Attribute',
-				'letter-spacing': 0,
-				style: {
-					'font-size': '12px',
-					'text-shadow': '1px 0 1px #333333'
-				}
-			},
-			'.outer': {
-				fill: '#c4b484',
-				stroke: '#c4b484',
-				filter: {
-					name: 'dropShadow',
-					args: {
-						dx: 0,
-						dy: 2,
-						blur: 2,
-						color: '#222138'
-					}
-				}
-			},
-			customAttr: {
-				type: 'varchar'
-			}
-		},
-		size: {
-			width: 60,
-			height: 40
-		},
-	});
-
-*/
 
 var attrKey = new erd.Key({
 		position: {
