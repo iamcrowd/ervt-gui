@@ -20,7 +20,7 @@ function showTemporality(){
 	actualElement.model.attr('textTemp/display','block');
 	actualElement.model.attr('textTemp/text', actualElement.model.attributes.temporality);
 	actualElement.model.attr('textName/refX2', -10);
-	console.log(actualElement);
+	hideElementTools();
 }
 
 function hideTemporality(){
@@ -28,6 +28,7 @@ function hideTemporality(){
 	actualElement.model.attr('textTemp/display','none');
 	actualElement.model.attr('textTemp/text', '');
 	actualElement.model.attr('textName/refX2', 0);
+	hideElementTools();
 }
 
 paper.on('element:contextmenu', function(element) {
