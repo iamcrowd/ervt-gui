@@ -157,16 +157,19 @@ function getTemporalElements() {
         var id = cid.match(/\d+/g)[0];
         var numID = new Number(id);
 				var dataType = element.attr('customAttr/type');
+				var xpos = element.attributes.position.x;
+				var ypos = element.attributes.position.y;
 
         switch (type) {
             case "erd.CustomEntity":
 								var entity = '';
+
 								if (element.attributes.temporality == 'T'){
-                		entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{x}}';
+                		entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 								} else if (element.attributes.temporality == 'S') {
-											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{x}}';
+											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 								} else {
-											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "", "position":{x}}';
+											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 								}
                 entities.push(entity);
                 break;
