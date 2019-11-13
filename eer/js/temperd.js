@@ -240,28 +240,47 @@ function getLinkById(longId){
 }
 
 /*
+Return an element given a cid
+*/
+function getElementByCid(cid){
+	return graphMain.getCell(cid);
+}
+
+function getEntities(){
+	elements = getTemporalElements()[0];
+}
+
+function getAttributes(){
+	elements = getTemporalElements()[1];
+}
+
+function getRelationships(){
+	elements = getTemporalElements()[2];
+}
+
+function getIsa(){
+	elements = getTemporalElements()[3];
+}
+
+/*
 Get JSON Objects for each ERvt link
 */
 function getTemporalLinks() {
 		var links = [];
-		var elements = getTemporalElements();
 
 		var links_a = graphMain.getLinks();
 
     for (var i = 0; i < links_a.length; i++) {
+			  var numID = link_e.cid;
         var link_e = links_a[i];
-        var origin = link_e.attributes.source;
-				var target = link_e.attributes.target;
+        var cid_origin = getLinkById(link_e.attributes.source);
+				var cid_target = getLinkById(link_e.attributes.target);
 
-        var numID = link_e.cid;
+				var origin = getElementByCid(cid_origin);
+				var target = getElementByCid(cid_target);
 
-				console.log(origin);
-				console.log(target);
-				console.log(link_e);
-				var link_id_o = getLinkById(origin);
-				var link_id_t = getLinkById(target);
-				console.log(link_id_o);
-				console.log(link_id_t);
+				
+
 		}
 
 	return links;
