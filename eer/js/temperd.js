@@ -145,24 +145,24 @@ function getTemporalElements() {
     var relationships = [];
     var attributes = [];
     var isa = [];
-    var connectors = [];
+
     var elements = graphMain.getElements();
+		var links = graphMain.getLinks();
 
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
         var type = element.attributes.type;
-        var name = element.attr('textName/text');
-				name = name.replace('\n',"\\n");
-        var cid = element.cid;
-        var id = cid.match(/\d+/g)[0];
-        var numID = new Number(id);
-				var dataType = element.attr('customAttr/type');
+
+        var numID = element.cid;
+
 				var xpos = element.attributes.position.x;
 				var ypos = element.attributes.position.y;
 
         switch (type) {
             case "erd.CustomEntity":
 								var entity = '';
+								var name = element.attr('textName/text');
+								name = name.replace('\n',"\\n");
 
 								if (element.attributes.temporality == 'T'){
                 		entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
@@ -174,9 +174,97 @@ function getTemporalElements() {
                 entities.push(entity);
                 break;
 
+								case "erd.CustomNormal":
+										var normalAttr = '';
+										var datatype = element.attr('customAttr/type');
+										var name = element.attr('textName/text');
+										name = name.replace('\n',"\\n");
+
+										if (element.attributes.temporality == 'T'){
+		                		normalAttr = '{"name":"'+name+'","type":"normal","datatype":'+datatype+',"id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										} else if (element.attributes.temporality == 'S') {
+													normalAttr = '{"name":"'+name+'","type":"normal","datatype":'+datatype+',"id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										} else {
+													normalAttr = '{"name":"'+name+'","type":"normal","datatype":'+datatype+',"id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										}
+		                attributes.push(normalAttr);
+		                break;
+
+								case "erd.CustomKeyAttr":
+										var keyAttr = '';
+										var datatype = element.attr('customAttr/type');
+										var name = element.attr('textName/text');
+										name = name.replace('\n',"\\n");
+
+										if (element.attributes.temporality == 'T'){
+				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":'+datatype+',"id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										} else if (element.attributes.temporality == 'S') {
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":'+datatype+',"id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										} else {
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":'+datatype+',"id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										}
+				            attributes.push(keyAttr);
+				            break;
+
+								case "erd.CustomRelationship":
+										var rel = '';
+										var name = element.attr('textName/text');
+										name = name.replace('\n',"\\n");
+
+										if (element.attributes.temporality == 'T'){
+						           		rel = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										} else if (element.attributes.temporality == 'S') {
+													rel = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										} else {
+													rel = '{"name":"'+name+'",id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+										}
+						        relationships.push(rel);
+						        break;
+
+								case "erd.Inheritance":
+										var isa_e = '';
+								    isa_e = '{"id":'+numID+', "position":{"x":'+xpos+',"y":'+ypos+'}}';
+
+								    isa.push(isa_e);
+								    break;
         }
   }
-	return [entities];
+	return [entities,attributes,relationships,isa];
+}
+
+/*
+Return a link short id given a long identifier
+*/
+function getLinkById(longId){
+	return graphMain.getCell(longId).cid;
+}
+
+/*
+Get JSON Objects for each ERvt link
+*/
+function getTemporalLinks() {
+		var links = [];
+		var elements = getTemporalElements();
+
+		var links_a = graphMain.getLinks();
+
+    for (var i = 0; i < links_a.length; i++) {
+        var link_e = links_a[i];
+        var origin = link_e.attributes.source;
+				var target = link_e.attributes.target;
+
+        var numID = link_e.cid;
+
+				console.log(origin);
+				console.log(target);
+				console.log(link_e);
+				var link_id_o = getLinkById(origin);
+				var link_id_t = getLinkById(target);
+				console.log(link_id_o);
+				console.log(link_id_t);
+		}
+
+	return links;
 }
 
 /*
