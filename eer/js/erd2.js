@@ -448,7 +448,7 @@ tools.append('<div id="elDefButton" class="tools tools-entity-def" onclick="setA
 tools.append('<div id="selectSuperEntity" class="tools tools-select-super-entity" onclick="selectSuperEntity(event)"><a class="tooltips" href="#"><i class="material-icons">expand_less</i><span>Define super entity</span></a></div>');
 tools.append('<div id="elementNameText" class="tools tools-rename"><textarea id="elementRenameInput" cols="5" rows="2"></textarea></div>');
 tools.append('<div id="elementAttrType" class="tools tools-attr-type"><a class="tooltips" href="#"><i class="material-icons" onclick="displayAttrType()">title</i><span>Change datatype of attribute</span></a><select id="selectAttrType" size="3"><option value="varchar">Texto</option><option value="integer">Entero</option><option value="boolean">Booleano</option></select></div>');
-tools.append('<div id="isaType" class="tools tools-isa-type"><a class="tooltips" href="#"><i class="material-icons" onclick="displayIsaType()">title</i><span>Set disjoint inheritance</span></a><select id="selectIsaType" size="3"><option value="1">Disjunta</option><option value="2">Solapada</option><option value="3">Union</option></select></div>');
+tools.append('<div id="isaType" class="tools tools-isa-type"><a class="tooltips" href="#"><i class="material-icons" onclick="displayIsaType()">title</i><span>Set disjoint inheritance</span></a><select id="selectIsaType" size="3"><option value="1">Disjunta</option><option value="2">Solapada</option><option value="3">Union</option><option value="4">None</option></select></div>');
 tools.css({
 	display: 'none'
 });
@@ -641,6 +641,8 @@ $('#selectIsaType').click(function () {
 		actualElement.model.attr('text/text','o');
 	}else if ($(this).val()==3){
 		actualElement.model.attr('text/text','U');
+	}else if ($(this).val()==4){
+		actualElement.model.attr('text/text','');
 	}
 	hideElementTools();
 })

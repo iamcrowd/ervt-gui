@@ -462,7 +462,7 @@ erd.Attribute.define('erd.Inheritance', {
 	attrs: {
 		text: {
 			fill: '#ffffff',
-			text: 'o',
+			text: '',
 			fontWeight: 'bold',
 			'letter-spacing': 0,
 			style: {
