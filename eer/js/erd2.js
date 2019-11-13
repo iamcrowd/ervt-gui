@@ -485,6 +485,7 @@ paper.on('element:pointerdblclick', function (cellView, evt) {
 $('textarea').on('keydown', function (e) {
 	if (e.which == 13 && !e.shiftKey) {
 		hideRenameText();
+		hideElementTools();
 	}
 });
 

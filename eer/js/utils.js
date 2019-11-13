@@ -9,7 +9,7 @@ function resizeElementFromLabel(elementView)
 
 	var sizeChars=0;
 	var markups=element.markup;
-
+	
 	for (i = 0; i < markups.length; ++i) {
 		if(markups[i].tagName.toUpperCase()=='TEXT')
 		{
