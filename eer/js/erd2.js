@@ -1032,7 +1032,7 @@ paper.on({
 				connectLink(newLink, elementBelow, elementAbove);
 				newLink.addTo(graphMain);
 				addTemporalTools(newLink);
-				newLink.appendLabel(createLabel('addConstraint'));
+				newLink.appendLabel(createLabel('setConstraint'));
 			}else{
 				newLink = createLink();
 				connectLink(newLink, elementBelow, elementAbove);
