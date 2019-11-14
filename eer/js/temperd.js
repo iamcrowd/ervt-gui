@@ -288,7 +288,7 @@ function attrLookup(link_e, entity, attr){
 	var datatype = attr.attr('customAttr/type');
 
 	link_obj = '{"name":"'+numID+'","entity": "'+name_o+'", "attribute": "'+name_d+'","type":"attribute"}';
-	
+
 	return link_obj;
 }
 
@@ -326,7 +326,6 @@ function getTemporalLinks() {
 																var attr = attrLookup(link_e, target, origin);
 																links.push(attr);
 										}
-
 		}
 		return links;
 }
@@ -335,31 +334,11 @@ function getTemporalLinks() {
 Export JSON object including a Temporal ER
 */
 function exportJSON() {
-    var allElement = getAllElement();
+    var allElement = getTemporalElements();
     var entities = allElement[0];
     var attributes = allElement[1];
-    var links = allElement[2];
-    var elements = graphMain.getElements();
-    var links = graphMain.getLinks();
-    for (var i = 0; i < links.length; i++) {
-        var link = links[i];
-        var cardinality = "";
-        var labels = link.attributes.labels;
-        if (labels != null) {
-            cardinality = labels[0].attrs.text.text;
-        }
+		var links = getTemporalLinks()
 
-        var element1 = graphMain.getCell(link.source().id);
-        var element1id = element1.cid.match(/\d+/g)[0];
-        var numElement1id = new Number(element1id);
-        var element2 = graphMain.getCell(link.target().id);
-        var element2id = element2.cid.match(/\d+/g)[0];
-        var numElement2id = new Number(element2id);
-		var isTotal = link.attr('customAttr/total');
-		var direction = (link.attr('customAttr/direction') == true);
-		var isInh = (link.attr('customAttr/inheritance') == true);
-        connectors.push('{"total": '+isTotal+',"element1": '+numElement1id+',"element2": '+numElement2id+',"cardinality2": "'+cardinality+'","name": "","inheritance": '+isInh+',"cardinality1": "","direction": '+direction+'}');
-    }
-    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"links":['+links+']}';
+    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"links":'+getTemporalLinks()+'}';
 	 console.log(json);
 }
