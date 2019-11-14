@@ -98,10 +98,7 @@ function canConnect(cellViewS, cellViewT) {
 		var targetType = getType(cellViewT);
 		var specificSourceType = getSpecificType(cellViewS);
 		var specificTargetType = getSpecificType(cellViewT);
-		//var linksS = getElementLinks(cellViewS);
-		//var linksT = getElementLinks(cellViewT);
-		//console.log(linksS);
-		//console.log(linksT);
+
 		if (cellViewS === cellViewT) {
 			canConnect = false;
 		} else if (sourceType === 'Entity') {
