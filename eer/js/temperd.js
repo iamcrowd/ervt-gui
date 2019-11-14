@@ -278,6 +278,20 @@ function evo_constraintsLookup(link_e, origin, target){
 	return link_obj;
 }
 
+function attrLookup(link_e, entity, attr){
+	var link_obj = '';
+	var name_o = entity.attr('textName/text');
+	name_o = name_o.replace('\n',"\\n");
+	var name_d = attr.attr('textName/text');
+	name_d = name_d.replace('\n',"\\n");
+	var numID = link_e.cid;
+	var datatype = attr.attr('customAttr/type');
+
+	link_obj = '{"name":"'+numID+'","entity": "'+name_o+'", "attribute": "'+name_d+'","type":"attribute"}';
+	
+	return link_obj;
+}
+
 /*
 Get JSON Objects for each ERvt link
 */
@@ -295,14 +309,23 @@ function getTemporalLinks() {
 				var origin = getElementByCid(cid_origin);
 				var target = getElementByCid(cid_target);
 
-				if (origin.attributes.type == "erd.CustomEntity" &&
-						target.attributes.type == "erd.CustomEntity"){
+
+				if (getType(origin) == "Entity" &&
+						getType(target) == "Entity"){
 
 							var evo = evo_constraintsLookup(link_e, origin, target);
 							if (evo.length != 0){
 								links.push(evo);
 							}
-				}
+				} else if (getType(origin) == "Entity" &&
+										getType(target) == "Attribute"){
+											var attr = attrLookup(link_e, origin, target);
+											links.push(attr);
+										}else if (getType(origin) == "Attribute" &&
+ 									 						getType(target) == "Entity") {
+																var attr = attrLookup(link_e, target, origin);
+																links.push(attr);
+										}
 
 		}
 		return links;
