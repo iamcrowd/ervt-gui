@@ -262,6 +262,22 @@ function getIsa(){
 	elements = getTemporalElements()[3];
 }
 
+
+function evo_constraintsLookup(link_e, origin, target){
+	var link_obj = '';
+	var name_o = origin.attr('textName/text');
+	name_o = name_o.replace('\n',"\\n");
+	var name_d = target.attr('textName/text');
+	name_d = name_d.replace('\n',"\\n");
+	var numID = link_e.cid;
+
+	if (link_e.attr('customAttr/constraintType') != ''){
+		label_l = link_e.attr('customAttr/constraintType');
+		link_obj = '{"name":"'+numID+'","entities": ["'+name_o+'","'+name_d+'"], "type":"'+label_l+'"}';
+	}
+	return link_obj;
+}
+
 /*
 Get JSON Objects for each ERvt link
 */
@@ -273,37 +289,23 @@ function getTemporalLinks() {
 
     for (var i = 0; i < links_a.length; i++) {
         var link_e = links_a[i];
-				var numID = link_e.cid;
         var cid_origin = getLinkById(link_e.attributes.source);
 				var cid_target = getLinkById(link_e.attributes.target);
 
 				var origin = getElementByCid(cid_origin);
 				var target = getElementByCid(cid_target);
 
-				switch (origin.attributes.type) {
-            case "erd.CustomEntity":
-								var link_obj = '';
-								var name_o = origin.attr('textName/text');
-								name_o = name_o.replace('\n',"\\n");
+				if (origin.attributes.type == "erd.CustomEntity" &&
+						target.attributes.type == "erd.CustomEntity"){
 
-								if (target.attributes.type == "erd.CustomEntity"){
-										var name_d = target.attr('textName/text');
-										name_d = name_d.replace('\n',"\\n");
-
-									if (link_e.attr('customAttr/constraintType') != ''){
-										label_l = link_e.attr('customAttr/constraintType');
-										link_obj = '{"name":"'+numID+'","entities": ["'+name_o+'","'+name_d+'"], "type":"'+label_l+'"}';
-									}
-								}
-
-                links.push(link_obj);
-                break;
-
-        }
+							var evo = evo_constraintsLookup(link_e, origin, target);
+							if (evo.length != 0){
+								links.push(evo);
+							}
+				}
 
 		}
-
-	return links;
+		return links;
 }
 
 /*
