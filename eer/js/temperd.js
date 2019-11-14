@@ -292,7 +292,7 @@ function getTemporalLinks() {
 
 									if (link_e.attr('customAttr/constraintType') != ''){
 										label_l = link_e.attr('customAttr/constraintType');
-										link_obj = '{"name":"'+numID+'","entities": ["'+name_o+'","'+name_d+'"], "type":'+label_l+'}';
+										link_obj = '{"name":"'+numID+'","entities": ["'+name_o+'","'+name_d+'"], "type":"'+label_l+'"}';
 									}
 								}
 
