@@ -165,11 +165,11 @@ function getTemporalElements() {
 								name = name.replace('\n',"\\n");
 
 								if (element.attributes.temporality == 'T'){
-                		entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+                		entity = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 								} else if (element.attributes.temporality == 'S') {
-											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+											entity = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 								} else {
-											entity = '{"name":"'+name+'","id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+											entity = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 								}
                 entities.push(entity);
                 break;
@@ -181,11 +181,11 @@ function getTemporalElements() {
 										name = name.replace('\n',"\\n");
 
 										if (element.attributes.temporality == 'T'){
-		                		normalAttr = '{"name":"'+name+'","type":"normal","datatype":'+datatype+',"id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+		                		normalAttr = '{"name":"'+name+'","type":"normal","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else if (element.attributes.temporality == 'S') {
-													normalAttr = '{"name":"'+name+'","type":"normal","datatype":'+datatype+',"id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													normalAttr = '{"name":"'+name+'","type":"normal","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else {
-													normalAttr = '{"name":"'+name+'","type":"normal","datatype":'+datatype+',"id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													normalAttr = '{"name":"'+name+'","type":"normal","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 		                attributes.push(normalAttr);
 		                break;
@@ -222,10 +222,7 @@ function getTemporalElements() {
 						        break;
 
 								case "erd.Inheritance":
-										var isa_e = '';
-								    isa_e = '{"id":'+numID+', "position":{"x":'+xpos+',"y":'+ypos+'}}';
-
-								    isa.push(isa_e);
+								    isa.push(element);
 								    break;
         }
   }
@@ -247,19 +244,19 @@ function getElementByCid(cid){
 }
 
 function getEntities(){
-	elements = getTemporalElements()[0];
+	return getTemporalElements()[0];
 }
 
 function getAttributes(){
-	elements = getTemporalElements()[1];
+	return getTemporalElements()[1];
 }
 
 function getRelationships(){
-	elements = getTemporalElements()[2];
+	return getTemporalElements()[2];
 }
 
 function getIsa(){
-	elements = getTemporalElements()[3];
+	return getTemporalElements()[3];
 }
 
 
@@ -293,6 +290,76 @@ function attrLookup(link_e, entity, attr){
 }
 
 /*
+Get JSON Objects for each ERvt isa
+Circle in the middle representing ISA is always the target of links
+*/
+function getTemporalIsa() {
+		var isa_links = [];
+		var label_l = '';
+		var is_disjoint = false;
+		var is_union = false;
+		var is_total = false;
+		var is_overlap = false;
+		var constraint = [];
+
+		var isa_objs = getIsa();
+
+    for (var i = 0; i < isa_objs.length; i++) {
+        var isa_elem = isa_objs[i];
+				var links_connected = getElementLinks(isa_elem);
+				var numID = isa_elem.cid;
+				var children = [];
+
+				if (isa_elem.attr('text/text') == 'd'){
+					is_disjoint = true;
+					constraint.push('"exclusive"');
+				}else if (isa_elem.attr('text/text') == 'U') {
+					is_union = true;
+					constraint.push('"union"');
+				}else if (isa_elem.attr('text/text') == 'o') {
+					is_overlap = true;
+					constraint.push('"overlapping"');
+				}
+
+				for (var j = 0; j < links_connected.length; j++) {
+		        var alink = links_connected[j];
+		        var cid_origin = getLinkById(alink.attributes.source);
+						var cid_target = getLinkById(alink.attributes.target);
+						var origin = getElementByCid(cid_origin);
+						var target = getElementByCid(cid_target);
+
+						if (getType(origin) == "Inheritance" &&
+								getType(target) == "Entity"){
+									var temp = origin;
+									origin = target;
+									target = temp;
+								}
+
+						var name_o = origin.attr('textName/text');
+						name_o = name_o.replace('\n',"\\n");
+
+						if (alink.attr('customAttr/inheritance') == true){
+							var is_parent = origin.attr('textName/text');
+
+							if (alink.attr('customAttr/total') == true){
+								is_total = true;
+								constraint.push('"total"');
+							}
+						}else if (alink.attr('customAttr/inheritance') == false){
+							var name_ch = '';
+							name_ch = origin.attr('textName/text');
+							name_ch = name_ch.replace('\n',"\\n");
+							children.push('"'+name_ch+'"');
+						}
+				}
+
+				anIsaLink = '{"name":"'+numID+'","parent":"'+is_parent+'", "entities":['+children+'], "type":"isa", "constraint":['+constraint+']}';
+				isa_links.push(anIsaLink);
+		}
+		return isa_links;
+}
+
+/*
 Get JSON Objects for each ERvt link
 */
 function getTemporalLinks() {
@@ -312,20 +379,19 @@ function getTemporalLinks() {
 
 				if (getType(origin) == "Entity" &&
 						getType(target) == "Entity"){
-
 							var evo = evo_constraintsLookup(link_e, origin, target);
 							if (evo.length != 0){
 								links.push(evo);
 							}
 				} else if (getType(origin) == "Entity" &&
-										getType(target) == "Attribute"){
-											var attr = attrLookup(link_e, origin, target);
-											links.push(attr);
-										}else if (getType(origin) == "Attribute" &&
- 									 						getType(target) == "Entity") {
-																var attr = attrLookup(link_e, target, origin);
-																links.push(attr);
-										}
+									getType(target) == "Attribute"){
+									var attr = attrLookup(link_e, origin, target);
+									links.push(attr);
+				}else if (getType(origin) == "Attribute" &&
+ 									getType(target) == "Entity") {
+									var attr = attrLookup(link_e, target, origin);
+									links.push(attr);
+				}
 		}
 		return links;
 }
@@ -337,8 +403,9 @@ function exportJSON() {
     var allElement = getTemporalElements();
     var entities = allElement[0];
     var attributes = allElement[1];
-		var links = getTemporalLinks()
+		var links = getTemporalLinks();
+		links.push(getTemporalIsa());
 
-    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"links":'+getTemporalLinks()+'}';
-	 console.log(json);
+    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"links":['+links+']}';
+	 	console.log(json);
 }
