@@ -15,6 +15,16 @@ function setAsNonTemporal(event) {
 	hideTemporality();
 }
 
+function getTemporality(element){
+	if (element.attributes.temporality == 'T') {
+		return "temporal";
+	}else if (element.attributes.temporality == 'S') {
+		return "snapshot";
+	}else {
+		return "";
+	}
+}
+
 function showTemporality(){
 	actualElement.model.attr('tempRect/display','block');
 	actualElement.model.attr('textTemp/display','block');
@@ -140,9 +150,10 @@ function switchConstraint(link) {
 /*
 Get JSON Objects for each ERvt primitive
 */
-function getTemporalElements() {
+function getJSONTemporalElements() {
 		var entities = [];
     var relationships = [];
+		var objRelationship = [];
     var attributes = [];
     var isa = [];
 
@@ -197,11 +208,11 @@ function getTemporalElements() {
 										name = name.replace('\n',"\\n");
 
 										if (element.attributes.temporality == 'T'){
-				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":'+datatype+',"id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else if (element.attributes.temporality == 'S') {
-													keyAttr = '{"name":"'+name+'","type":"key","datatype":'+datatype+',"id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else {
-													keyAttr = '{"name":"'+name+'","type":"key","datatype":'+datatype+',"id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 				            attributes.push(keyAttr);
 				            break;
@@ -219,6 +230,7 @@ function getTemporalElements() {
 													rel = '{"name":"'+name+'",id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 						        relationships.push(rel);
+										objRelationship.push(element);
 						        break;
 
 								case "erd.Inheritance":
@@ -226,7 +238,7 @@ function getTemporalElements() {
 								    break;
         }
   }
-	return [entities,attributes,relationships,isa];
+	return [entities,attributes,relationships,isa,objRelationship];
 }
 
 /*
@@ -243,22 +255,25 @@ function getElementByCid(cid){
 	return graphMain.getCell(cid);
 }
 
-function getEntities(){
-	return getTemporalElements()[0];
+function getJSONEntities(){
+	return getJSONTemporalElements()[0];
 }
 
-function getAttributes(){
-	return getTemporalElements()[1];
+function getJSONAttributes(){
+	return getJSONTemporalElements()[1];
 }
 
-function getRelationships(){
-	return getTemporalElements()[2];
+function getJSONRelationships(){
+	return getJSONTemporalElements()[2];
 }
 
-function getIsa(){
-	return getTemporalElements()[3];
+function getObjIsa(){
+	return getJSONTemporalElements()[3];
 }
 
+function getObjRelationships(){
+	return getJSONTemporalElements()[4];
+}
 
 function evo_constraintsLookup(link_e, origin, target){
 	var link_obj = '';
@@ -293,7 +308,7 @@ function attrLookup(link_e, entity, attr){
 Get JSON Objects for each ERvt isa
 Circle in the middle representing ISA is always the target of links
 */
-function getTemporalIsa() {
+function getJSONTemporalIsa() {
 		var isa_links = [];
 		var label_l = '';
 		var is_disjoint = false;
@@ -302,7 +317,7 @@ function getTemporalIsa() {
 		var is_overlap = false;
 		var constraint = [];
 
-		var isa_objs = getIsa();
+		var isa_objs = getObjIsa();
 
     for (var i = 0; i < isa_objs.length; i++) {
         var isa_elem = isa_objs[i];
@@ -360,9 +375,62 @@ function getTemporalIsa() {
 }
 
 /*
+Get JSON Objects for each ERvt relationship
+Diamonds represent the domain of the relationship
+*/
+function getJSONTemporalRelationship() {
+		var rel_links = [];
+		var label_l = '';
+
+		var rel_objs = getObjRelationships();
+
+    for (var i = 0; i < rel_objs.length; i++) {
+        var rel_elem = rel_objs[i];
+				var links_connected = getElementLinks(rel_elem);
+				var numID = rel_elem.cid;
+				var entities = [];
+				var roles = [];
+				var cardinality = [];
+
+				for (var j = 0; j < links_connected.length; j++) {
+		        var alink = links_connected[j];
+		        var cid_diamond = getLinkById(alink.attributes.source);
+						var cid_entity = getLinkById(alink.attributes.target);
+						var diamond = getElementByCid(cid_diamond);
+						var entity = getElementByCid(cid_entity);
+
+						var label_l = alink.attributes.labels;
+						if (label_l != null) {
+								var aCard = label_l[0].attrs.text.text;
+								cardinality.push('"'+aCard+'"');
+						}
+
+						if (getType(diamond) == "Entity" &&
+								getType(entity) == "Relationship"){
+									var temp = diamond;
+									diamond = entity;
+									entity = temp;
+								}
+
+						if (getType(entity) != "Attribute"){
+							var name_d = entity.attr('textName/text');
+							name_d = name_d.replace('\n',"\\n");
+							entities.push('"'+name_d+'"');
+							roles.push('"'+name_d.toLowerCase()+'"');
+						}
+
+				}
+
+				anRelLink = '{"name":"'+numID+'","entities":['+entities+'], "cardinality":['+cardinality+'], "roles":['+roles+'], "type":"relationship"}';
+				rel_links.push(anRelLink);
+		}
+		return rel_links;
+}
+
+/*
 Get JSON Objects for each ERvt link
 */
-function getTemporalLinks() {
+function getJSONTemporalLinks() {
 		var links = [];
 		var label_l = '';
 
@@ -399,13 +467,16 @@ function getTemporalLinks() {
 /*
 Export JSON object including a Temporal ER
 */
-function exportJSON() {
-    var allElement = getTemporalElements();
-    var entities = allElement[0];
-    var attributes = allElement[1];
-		var links = getTemporalLinks();
-		links.push(getTemporalIsa());
+function exportTemporalJSON() {
+    var entities = getJSONEntities();
+    var attributes = getJSONAttributes();
+		var relationships = getJSONRelationships();
+		var temp = [];
 
-    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"links":['+links+']}';
+		var tempLinks = temp.concat(getJSONTemporalLinks());
+		var isaLinks = tempLinks.concat(getJSONTemporalIsa());
+		var links = isaLinks.concat(getJSONTemporalRelationship())
+
+    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"relationships":['+relationships+'],"links":['+links+']}';
 	 	console.log(json);
 }
