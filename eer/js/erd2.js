@@ -18,31 +18,11 @@ var paper = new joint.dia.Paper({
 		},
 		validateConnection: function (cellViewS, magnetS, cellViewT, magnetT, end, linkView) {
 			// previene conexiones invalidas
-			/*if (cellViewS != null && cellViewT != null) {
-			console.log("source: " + cellViewS.model.attributes.type + ", target: " + cellViewT.model.attributes.type);
-			}*/
 			if (cellViewS == null || cellViewT == null || cellViewS.model.attributes.type === 'standard.Link' || cellViewT.model.attributes.type === 'standard.Link') {
-				//console.log("no conecta");
 				return false;
 			}
 			return canConnect(cellViewS.model, cellViewT.model);
 		},
-/*
-		drawGrid: {
-			name: 'doubleMesh',
-			args: [{
-					color: '#4C678C',
-					thickness: 1
-				}, // settings for the primary mesh
-				{
-					color: '#4C678C',
-					scaleFactor: 10,
-					thickness: 5
-				} //settings for the secondary mesh
-			]
-		}
-*/
-
 	});
 
 function getSpecificType(elementModel) {
@@ -586,24 +566,8 @@ function elementLink(event) {
 		x: event.clientX,
 		y: event.clientY
 	});
-	//newLink.startArrowheadMove('target');
+
 	hideElementTools();
-
-	//graphMain.startBatch("arrowhead-move",newLink);
-	//graphMain.dragArrowheadStart(evt, x, y);
-	//console.log(newLink);
-	//newLink.dragArrowheadStart();
-	/*$('#paper').on('mousemove.fly', function (event) {
-	//console.log(newLink);
-	newLink.prop('target', {
-	x: event.pageX,
-	y: event.pageY
-	});
-	});
-
-	$('#paper').on('mouseup.fly', function (event) {
-	$('#paper').off('mousemove.fly').off('mouseup.fly');
-	});*/
 }
 
 function elementDuplicate() {
@@ -791,20 +755,14 @@ function setInheritance(link,value) {
 
 //cambia la herencia de normal a disjoint y viceversa.
 function changeIsaType(){
-	console.log(actualElement.model.attr('customAttr/type'));
 	if (actualElement.model.attr('customAttr/type')==0){
 		actualElement.model.attr('customAttr/type',1);
-		console.log("cambia a "+actualElement.model.attr('customAttr/type') )
 	}else{
 		actualElement.model.attr('customAttr/type',0);
-		console.log("cambia a "+actualElement.model.attr('customAttr/type') )
 	}
 	hideElementTools();
 }
 
-/*graphMain.on('all', function(eventName, cell) {
-console.log(arguments);
-});*/
 
 //link tool para agregar boton de total en link
 joint.linkTools.TotalButton = joint.linkTools.Button.extend({
@@ -876,9 +834,7 @@ function switchTotal(link) {
 function switchCardinality(linkView, evt) {
 	var labels = linkView.model.attributes.labels;
 	if (labels.length > 0) {
-		//console.log(labels[0].attrs.text.text);
 		if (labels[0].attrs.text.text == '1') {
-			//labels[0].attrs.text.text = 'N';
 			linkView.model.label(0, {
 				attrs: {
 					text: {
@@ -887,7 +843,6 @@ function switchCardinality(linkView, evt) {
 				}
 			});
 		} else {
-			//labels[0].attrs.text.text = '1';
 			linkView.model.label(0, {
 				attrs: {
 					text: {
@@ -955,7 +910,6 @@ var createLink = function () {
 };
 
 paper.on('link:mouseenter', function (actualLinkView) {
-	//console.log(actualLinkView);
 	if (ISASelected == null) {
 		//para que no molesten las opciones de la flecha cuando se selecciona superEntity
 		actualLinkView.showTools();
@@ -1066,7 +1020,6 @@ paper.on('blank:pointerdown', function (event, x, y) {
 
 $("#paper").mousemove(function (event) {
 	if (dragStartPositionMain != null) {
-		//console.log("mousemove");
 		paper.translate(
 			event.offsetX - dragStartPositionMain.x,
 			event.offsetY - dragStartPositionMain.y);
@@ -1076,43 +1029,6 @@ $("#paper").mousemove(function (event) {
 paper.on('cell:pointerup blank:pointerup', function (cellView, x, y) {
 	dragStartPositionMain = null;
 });
-
-// var dragStartPositionPalette;
-
-// palette.on('blank:pointerdown',function(event, x, y) {
-//         dragStartPositionPalette = { x: x, y: y};
-//     }
-// );
-
-// $("#palette").mousemove(function(event) {
-//     if (dragStartPositionPalette != null) {
-//         console.log("mousemove");
-//         palette.translate(
-//             event.offsetX - dragStartPositionPalette.x,
-//             event.offsetY - dragStartPositionPalette.y);
-//     }
-// });
-
-// palette.on('cell:pointerup blank:pointerup', function(cellView, x, y) {
-//     dragStartPositionPalette = null;
-// });
-
-// $("#paper").on('mousewheel', function(event) {
-//     console.log(event);
-//     console.log("wheeeee");
-//     var oldScale = paper.scale().sx;
-//     var newScale = oldScale + event.deltaY/10;
-//     var beta = oldScale/newScale;
-
-//     var mouseLocal = paper.paperToLocalPoint(event.clientX, event.clientY);
-//     console.log(mouseLocal);
-//     var p = {x:mouseLocal.x, y:mouseLocal.y};
-
-//     ax = p.x - (p.x * beta) ;
-//     ay = p.y - (p.y * beta) ;
-
-//     paper.scale(newScale, newScale, ax, ay);
-// })
 
 $('#paper').on('mousewheel DOMMouseScroll', function (evt) {
 
@@ -1138,70 +1054,6 @@ $(window).resize(function () {
 	$("#paper").height($(window).height());
 });
 
-/*para editar un elemento*/
-/*paper.on({
-'element:pointerdblclick': function (elementView, evt) {
-//elementView.model.attr('text/text',"aaaaaaaa");
-//elementView.model.attr('text/text',$("_"+elementView.model.id).val());
-
-//$('body').append('<div class="editElement"><input id="_'+elementView.model.id+'" name="nameEntity" type="text"><button type="button" onclick="'+json_encode(elementView.model)+';">Aceptar</button><button type="button" onclick="$(\'.editElement\').remove();">Cancelar</button> </div>');
-//append('<button type="button">Aceptar</button>').click(changeName(elementView)).append('<button type="button" onclick="$(\'.editElement\').remove();">Cancelar</button>');
-$('body').append('<div id="flyConfig' + elementView.model.id + '" class="flyConfig"></div>');
-$('#flyConfig' + elementView.model.id).width(elementView.model.attributes.size.width);
-$('#flyConfig' + elementView.model.id).height(elementView.model.attributes.size.height);
-//console.log(elementView.model.attributes.size.width + " x " + elementView.model.attributes.size.height);
-console.log(elementView.model);
-$("#flyConfig" + elementView.model.id).offset({
-left: elementView.model.attributes.position.x,
-top: elementView.model.attributes.position.y
-});
-//var html = '<div class="div' + elementView.model.id + '" style="z-index:100; position:fixed"><input id="txtNewName" class="txt' + elementView.model.id + '" name="nameEntity" type="text"></div>';
-//$("body").append(html)
-//var btnAccept = '<button class="btn' + elementView.model.id + '" type="button">Aceptar</button>';
-//$(".div" + elementView.model.id).append(btnAccept);
-//$(".btn" + elementView.model.id).click(function ()
-//{
-//changeName(elementView)
-//}
-//);
-//var btnCancel = '<button type="button" onclick="$(\'.div' + elementView.model.id + '\').remove();">Cancelar</button>';
-//$(".div" + elementView.model.id).append(btnCancel);
-}
-});*/
-
-// function clientToLocalPoint(p) {
-
-//       var svgPoint = paper.svg.createSVGPoint();
-//       svgPoint.x = p.x;
-//       svgPoint.y = p.y;
-
-//     // This is a hack for Firefox! If there wasn't a fake (non-visible) rectangle covering the
-//     // whole SVG area, `$(paper.svg).offset()` used below won't work.
-//     var fakeRect = V('rect', {
-//         width: paper.options.width,
-//         height: paper.options.height,
-//         x: 0,
-//         y: 0,
-//         opacity: 0
-//     });
-//     V(paper.svg).prepend(fakeRect);
-
-//     var paperOffset = $(paper.svg).offset();
-
-//     // Clean up the fake rectangle once we have the offset of the SVG document.
-//     fakeRect.remove();
-
-//     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-//     var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
-
-//     svgPoint.x += scrollLeft - paperOffset.left;
-//     svgPoint.y += scrollTop - paperOffset.top;
-
-//     // Transform point into the viewport coordinate system.
-//     var pointTransformed = svgPoint.matrixTransform(paper.viewport.getCTM().inverse());
-
-//     return pointTransformed;
-// }
 
 var errorList = [];
 
@@ -1295,20 +1147,15 @@ function checkAttribute(element, links, currentElement, attributeArray) {
 			cant++;
 		} else if (getType(elm) == 'Attribute') {
 			//el atributo esta conectado a otro atributo
-			//if (getSpecificType(elm) == getSpecificType(currentElement)) {
 				//el atributo tiene que ser el mismo tipo especifico que el otro atributo
 				if (!attributeArray.includes(elm.id)) {
 					attributeArray.push(elm.id);
 					cant += checkAttribute(element, getElementLinks(elm), elm, attributeArray);
 					attributeArray.pop(elm.id);
-					//console.log(checkAttribute(elm,getElementLinks(elm),attributeArray));
 				} else if (attributeArray.length > 1 && attributeArray[attributeArray.length-2] != elm.id) {
 					//si esta en el array pero no es el ultimo, entonces existe un ciclo
 					markElement(element,'sintactico');
 				}
-			//} else {
-			//	markElement(element,'sintactico');
-			//}
 		}
 	}
 	if (cant != 1 && element.id == currentElement.id) {
@@ -1316,30 +1163,6 @@ function checkAttribute(element, links, currentElement, attributeArray) {
 	}
 	return cant;
 }
-
-// function checkKeyAttribute(element, links) {
-	// //no puede estar conectado a entidad debil o relacion debil
-	// for (var i = 0; i < links.length; i++) {
-		// link = links[i];
-		// var elm = (link.source().id != element.id ? graphMain.getCell(link.source().id) : graphMain.getCell(link.target().id));
-		// if (getSpecificType(elm) == 'WeakEntity' || getSpecificType(elm) == 'WeakRelationship') {
-			//	markElement(element,'sintactico');
-			// return;
-		// }
-	// }
-// }
-
-// function checkWeakKeyAttribute(element, links) {
-			// //no puede estar conectado a entidad normal o relacion normal
-	// for (var i = 0; i < links.length; i++) {
-		// link = links[i];
-		// var elm = (link.source().id != element.id ? graphMain.getCell(link.source().id) : graphMain.getCell(link.target().id));
-		// if (getSpecificType(elm) == 'Entity' || getSpecificType(elm) == 'erd.Relationship') {
-			//	markElement(element,'sintactico');
-			// return;
-		// }
-	// }
-// }
 
 function checkRelationship(element, links) {
 	//verifica que haya al menos 2 entidades
@@ -1429,7 +1252,6 @@ function check() {
 	req.addEventListener("load", function() {
 	// La petición ha tenido éxito
 	if (req.status >= 200 && req.status < 400) {
-	    //console.log(req.responseText);
 	    rr = req.responseText.toString();
 		if (rr.length == 4){
 			alert('Modelo consistente');
@@ -1438,14 +1260,9 @@ function check() {
 			var classes = JSON.parse(rr);
 			var i;
 			for (i = 0; i<classes.length;i++){
-				//console.log(classes[i]);
 				var elem = graphMain.getCells();
 				var j;
 				for (j = 0; j<elem.length;j++){
-					//console.log(elem[j].attr('text/text'));
-					//console.log(classes[i]);
-					//console.log(classes[i].toUpperCase());
-					//console.log(elem[j].attr('text/text').toUpperCase());
 				if (getType(elem[j])!='Error'){
 					if (elem[j].attr('text/text').toUpperCase() == classes[i].toUpperCase()){
 						markElement(elem[j],'semantico');
@@ -1469,7 +1286,6 @@ function checkSemantica() {
 	req.open("POST", "http://localhost:3000/", true);
 	// Envío de la petición
 	var q = exportJSON();
-	console.log(q);
 	var query = '{"type": "check","data": '+q+'}';
 	req.send(query);
 	// Gestor del evento que indica que la petición no ha podido llegar al servidor
@@ -1535,11 +1351,10 @@ function exportJSON() {
         connectors.push('{"total": '+isTotal+',"element1": '+numElement1id+',"element2": '+numElement2id+',"cardinality2": "'+cardinality+'","name": "","inheritance": '+isInh+',"cardinality1": "","direction": '+direction+'}');
     }
     var json = '{"entities": ['+entities+'],"relationships":['+relationships+'],"attributes":['+attributes+'],"inheritances":['+inheritances+'],"connectors":['+connectors+']}';
-	 console.log(json);
+
 }
 
 function cleanInference() {
-	//console.log(palette.model.attributes.cells.models[0]);
   var elements = graphMain.getCells();
 	for (var i = 0; i < elements.length; i++) {
 		unmarkElement(elements[i]);

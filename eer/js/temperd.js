@@ -477,6 +477,7 @@ function exportTemporalJSON() {
 		var isaLinks = tempLinks.concat(getJSONTemporalIsa());
 		var links = isaLinks.concat(getJSONTemporalRelationship())
 
-    var json = '{"entities": ['+entities+'],"attributes":['+attributes+'],"relationships":['+relationships+'],"links":['+links+']}';
-	 	console.log(json);
+    var jsonervt = '{"entities": ['+entities+'],"attributes":['+attributes+'],"relationships":['+relationships+'],"links":['+links+']}';
+	 	console.log(jsonervt);
+		return jsonervt;
 }
