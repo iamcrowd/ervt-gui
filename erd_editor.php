@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<title>(ervt) t-crowd, the ontologist</title>
 <!--	<link rel="icon" href="crowdteensicon.png" type="image/png" /> -->
 
@@ -21,6 +22,7 @@
 	<script src="./libs/joint_v2.2.1.js"></script>
 	<script src="./libs/svg-pan-zoom.js"></script>
 	<script src="./eer/js/palette_shapes.js"></script>
+	
 </head>
 <body>
 	<header>
