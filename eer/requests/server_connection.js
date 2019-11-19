@@ -16,29 +16,10 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable(json, callback_function) {
+  request_satisfiable(json, reasoner, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/satisfiable.php";
-    return $.ajax({
-      type: "POST",
-      url: url,
-      data: postdata,
-      success: callback_function,
-      error: this.error_callback
-    });
-  }
-
-  // Send model to server request for full reasoning
-
-  // @param [String] json String with the JSON data.
-  // @param [String] strategy encoding strategy for translating models.
-  // @param [String] reasoner reasoning system.
-  // @param [function] callback_function a function to execute when the POST is done.
-  request_full_reasoning(json, strategy, reasoner, callback_function) {
-    var postdata, url;
-    postdata = "json=" + json;
-    url = this.urlprefix + "t-crowd/api/full.php";
     return $.ajax({
       type: "POST",
       url: url,
@@ -50,11 +31,33 @@ ServerConnection = class ServerConnection {
       error: this.error_callback
     });
   }
+
+  request_encoding(json, formal, callback_function) {
+    var postdata, url;
+    postdata = "json=" + json;
+    url = this.urlprefix + "t-crowd/api/encoding.php";
+    return $.ajax({
+      type: "POST",
+      url: url,
+      data: {
+        "formal": formal,
+        "json": json,
+      },
+      success: callback_function,
+      error: this.error_callback
+    });
+  }
 }
 
 
 function checkSatisfiability(){
-  return ServerConnection.request_satisfiable(exportTemporalJSON(),function(data) {
+  return ServerConnection.request_satisfiable(exportTemporalJSON(),'NuSMV', function(data) {
+    console.log(data);
+  });
+}
+
+function encodeERvt(){
+  return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
     console.log(data);
   });
 }
