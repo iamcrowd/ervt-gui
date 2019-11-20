@@ -59,6 +59,7 @@ function checkSatisfiability(){
 function encodeERvt(){
   return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
     console.log(data);
+    alert("http://localhost/t-crowd/api/tdl2TDLLiteFPX_tbox/");
   });
 }
 

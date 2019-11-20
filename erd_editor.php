@@ -22,7 +22,8 @@
 	<script src="./libs/joint_v2.2.1.js"></script>
 	<script src="./libs/svg-pan-zoom.js"></script>
 	<script src="./eer/js/palette_shapes.js"></script>
-	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<header>
@@ -41,11 +42,36 @@
 	<div id="paper"></div><!--<div id="palette-container">-->
 	<div id="palette" class="palette-vertical"></div><!--</div>-->
 	<div id="minimap"></div>
-	<script src="./eer/js/erd2.js"></script>
-	<script src="./eer/js/temperd.js"></script>
-	<script src="./eer/js/utils.js"></script>
-	<script src="./eer/requests/server_connection.js"></script>
+
 
 	<span id='string_span' style='font-size: 14;white-space: nowrap;display:none'></span>
+
+	<div class="container">
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Result</h4>
+        </div>
+        <div class="modal-body">
+          <p>http://localhost/t-crowd/api/tdl2TDLLiteFPX_tbox/</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="./eer/js/erd2.js"></script>
+<script src="./eer/js/temperd.js"></script>
+<script src="./eer/js/utils.js"></script>
+<script src="./eer/requests/server_connection.js"></script>
 </body>
 </html>
