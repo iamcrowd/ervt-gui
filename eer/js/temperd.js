@@ -208,11 +208,11 @@ function getJSONTemporalElements() {
 										name = name.replace('\n',"\\n");
 
 										if (element.attributes.temporality == 'T'){
-				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else if (element.attributes.temporality == 'S') {
-													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else {
-													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 				            attributes.push(keyAttr);
 				            break;
@@ -223,11 +223,11 @@ function getJSONTemporalElements() {
 										name = name.replace('\n',"\\n");
 
 										if (element.attributes.temporality == 'T'){
-						           		rel = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+						           		rel = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else if (element.attributes.temporality == 'S') {
-													rel = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													rel = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else {
-													rel = '{"name":"'+name+'",id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													rel = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 						        relationships.push(rel);
 										objRelationship.push(element);
@@ -284,7 +284,7 @@ function evo_constraintsLookup(link_e, origin, target){
 	var numID = link_e.cid;
 
 	if (link_e.attr('customAttr/constraintType') != ''){
-		label_l = link_e.attr('customAttr/constraintType');
+		label_l = link_e.attr('customAttr/constraintType').toLowerCase();
 		link_obj = '{"name":"'+numID+'","entities": ["'+name_o+'","'+name_d+'"], "type":"'+label_l+'"}';
 	}
 	return link_obj;
@@ -401,8 +401,14 @@ function getJSONTemporalRelationship() {
 
 						var label_l = alink.attributes.labels;
 						if (label_l != null) {
-								var aCard = label_l[0].attrs.text.text;
-								cardinality.push('"'+aCard+'"');
+							var aCard = "";
+							if (label_l[0].attrs.text.text == '1'){
+								aCard = label_l[0].attrs.text.text+".."+label_l[0].attrs.text.text;
+							}
+							else if (label_l[0].attrs.text.text == 'N') {
+								aCard = "0.."+label_l[0].attrs.text.text;
+							}
+							cardinality.push('"'+aCard+'"');
 						}
 
 						if (getType(diamond) == "Entity" &&
@@ -411,6 +417,9 @@ function getJSONTemporalRelationship() {
 									diamond = entity;
 									entity = temp;
 								}
+
+						var diamond_name = diamond.attr('textName/text');
+						diamond_name = diamond_name.replace('\n',"\\n");
 
 						if (getType(entity) != "Attribute"){
 							var name_d = entity.attr('textName/text');
@@ -421,7 +430,7 @@ function getJSONTemporalRelationship() {
 
 				}
 
-				anRelLink = '{"name":"'+numID+'","entities":['+entities+'], "cardinality":['+cardinality+'], "roles":['+roles+'], "type":"relationship"}';
+				anRelLink = '{"name":"'+diamond_name+'","id":"'+numID+'","entities":['+entities+'], "cardinality":['+cardinality+'], "roles":['+roles+'], "type":"relationship"}';
 				rel_links.push(anRelLink);
 		}
 		return rel_links;
