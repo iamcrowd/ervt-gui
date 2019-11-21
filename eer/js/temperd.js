@@ -208,11 +208,11 @@ function getJSONTemporalElements() {
 										name = name.replace('\n',"\\n");
 
 										if (element.attributes.temporality == 'T'){
-				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+				               		keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else if (element.attributes.temporality == 'S') {
-													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else {
-													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													keyAttr = '{"name":"'+name+'","type":"key","datatype":"'+datatype+'","id":"'+numID+'", "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 				            attributes.push(keyAttr);
 				            break;
@@ -223,11 +223,11 @@ function getJSONTemporalElements() {
 										name = name.replace('\n',"\\n");
 
 										if (element.attributes.temporality == 'T'){
-						           		rel = '{"name":"'+name+'","id":'+numID+', "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+						           		rel = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "temporal", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else if (element.attributes.temporality == 'S') {
-													rel = '{"name":"'+name+'","id":'+numID+', "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													rel = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "snapshot", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										} else {
-													rel = '{"name":"'+name+'",id":'+numID+', "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
+													rel = '{"name":"'+name+'","id":"'+numID+'", "timestamp": "", "position":{"x":'+xpos+',"y":'+ypos+'}}';
 										}
 						        relationships.push(rel);
 										objRelationship.push(element);
@@ -401,7 +401,7 @@ function getJSONTemporalRelationship() {
 
 						var label_l = alink.attributes.labels;
 						if (label_l != null) {
-								var aCard = label_l[0].attrs.text.text;
+								var aCard = label_l[0].attrs.text.text+".."+label_l[0].attrs.text.text;
 								cardinality.push('"'+aCard+'"');
 						}
 
