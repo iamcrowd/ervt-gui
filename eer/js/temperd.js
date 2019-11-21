@@ -401,8 +401,14 @@ function getJSONTemporalRelationship() {
 
 						var label_l = alink.attributes.labels;
 						if (label_l != null) {
-								var aCard = label_l[0].attrs.text.text+".."+label_l[0].attrs.text.text;
-								cardinality.push('"'+aCard+'"');
+							var aCard = "";
+							if (label_l[0].attrs.text.text == '1'){
+								aCard = label_l[0].attrs.text.text+".."+label_l[0].attrs.text.text;
+							}
+							else if (label_l[0].attrs.text.text == 'N') {
+								aCard = "0.."+label_l[0].attrs.text.text;
+							}
+							cardinality.push('"'+aCard+'"');
 						}
 
 						if (getType(diamond) == "Entity" &&
