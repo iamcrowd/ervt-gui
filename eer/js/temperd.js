@@ -284,7 +284,7 @@ function evo_constraintsLookup(link_e, origin, target){
 	var numID = link_e.cid;
 
 	if (link_e.attr('customAttr/constraintType') != ''){
-		label_l = link_e.attr('customAttr/constraintType');
+		label_l = link_e.attr('customAttr/constraintType').toLowerCase();
 		link_obj = '{"name":"'+numID+'","entities": ["'+name_o+'","'+name_d+'"], "type":"'+label_l+'"}';
 	}
 	return link_obj;
@@ -418,6 +418,9 @@ function getJSONTemporalRelationship() {
 									entity = temp;
 								}
 
+						var diamond_name = diamond.attr('textName/text');
+						diamond_name = diamond_name.replace('\n',"\\n");
+
 						if (getType(entity) != "Attribute"){
 							var name_d = entity.attr('textName/text');
 							name_d = name_d.replace('\n',"\\n");
@@ -427,7 +430,7 @@ function getJSONTemporalRelationship() {
 
 				}
 
-				anRelLink = '{"name":"'+numID+'","entities":['+entities+'], "cardinality":['+cardinality+'], "roles":['+roles+'], "type":"relationship"}';
+				anRelLink = '{"name":"'+diamond_name+'","id":"'+numID+'","entities":['+entities+'], "cardinality":['+cardinality+'], "roles":['+roles+'], "type":"relationship"}';
 				rel_links.push(anRelLink);
 		}
 		return rel_links;
