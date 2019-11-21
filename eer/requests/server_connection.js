@@ -5,7 +5,7 @@ ServerConnection = class ServerConnection {
   // @param error_callback {function} which error callback function to use.
   constructor(error_callback) {
     this.error_callback = error_callback;
-    this.urlprefix = "http://localhost/";
+    this.urlprefix = "http://crowd.fi.uncoma.edu.ar/";
   }
 
   set_urlprefix(str) {
@@ -59,7 +59,7 @@ function checkSatisfiability(){
 function encodeERvt(){
   return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
     console.log(data);
-    alert("http://localhost/t-crowd/api/tdl2TDLLiteFPX_tbox/");
+    alert("http://crowd.fi.uncoma.edu.ar/t-crowd/api/tdl2TDLLiteFPX_tbox/");
   });
 }
 
