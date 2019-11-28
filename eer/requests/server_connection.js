@@ -59,7 +59,9 @@ function checkSatisfiability(){
 function encodeERvt(){
   return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
     console.log(data);
-    alert(data);
+    var str = data.split("/var/www/html/");
+    var url =  "http://crowd.fi.uncoma.edu.ar/" + str[1];
+    alert("Browse TBox folder at: "+url);
   });
 }
 
