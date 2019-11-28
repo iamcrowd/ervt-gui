@@ -31,9 +31,9 @@
 			<a class="navbar-brand crowd-header text-white">ERvt-crowd<span class="crowdforteens-header text-white"></span>
 			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="json" onclick="exportTemporalJSON()">JSON</button><span>Export JSON diagram</span></a>
 			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="inference" onclick="checkSatisfiability()">SAT</button><span>Sat</span></a>
-			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="inference" onclick="encodeERvt()">Encode</button><span>Encode</span></a>
-			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="btnClean" onclick="cleanInference()">Clean</button><span>Clean validation markup</span></a>
-			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="btnDB" onclick="generateDB()">DB</button><span>Generate the database</span></a></a>
+			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="tdllitefpx" onclick="encodeERvt()">TDLliteFPX</button><span>TDLliteFPX</span></a>
+<!--			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="btnClean" onclick="cleanInference()">Clean</button><span>Clean validation markup</span></a>
+			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="btnDB" onclick="generateDB()">DB</button><span>Generate the database</span></a></a> -->
 			<a class="unco btn btn-sm btn-outline-dark" href="http://faiweb.uncoma.edu.ar/" target="_blank" role="button">
 				<img src="imgs/unco.png" height="32" alt="uncoma" />
 			</a>

@@ -265,7 +265,7 @@ erd.Normal.define('erd.CustomNormal',{
 				refHeight: '100%',
 			},
 			customAttr: {
-				type: 'varchar'
+				type: 'String'
 			},
 			'textTemp': {
 				ref:'tempRect',
@@ -353,7 +353,7 @@ erd.Key.define('erd.CustomKeyAttr',{
 				refHeight: '100%',
 			},
 			customAttr: {
-				type: 'varchar'
+				type: 'Integer'
 			},
 			'textTemp': {
 				ref:'tempRect',
@@ -610,7 +610,7 @@ var attrMult = new erd.Multivalued({
 				}
 			},
 			customAttr: {
-				type: 'varchar'
+				type: 'String'
 			}
 		},
 		size: {
@@ -654,7 +654,7 @@ erd.Attribute.define('erd.WeakKey', {
 		'.inner': {
 		},
 		customAttr: {
-			type: 'varchar'
+			type: 'String'
 		}
 	},
 	size: {
@@ -699,7 +699,7 @@ var attrDer = new erd.Derived({
 				}
 			},
 			customAttr: {
-				type: 'varchar'
+				type: 'String'
 			}
 		},
 		size: {
