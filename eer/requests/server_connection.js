@@ -5,7 +5,7 @@ ServerConnection = class ServerConnection {
   // @param error_callback {function} which error callback function to use.
   constructor(error_callback) {
     this.error_callback = error_callback;
-    this.urlprefix = "http://localhost/";
+    this.urlprefix = "http://crowd.fi.uncoma.edu.ar/";
   }
 
   set_urlprefix(str) {
