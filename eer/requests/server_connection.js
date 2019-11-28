@@ -59,11 +59,7 @@ function checkSatisfiability(){
 function encodeERvt(){
   return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
     console.log(data);
-<<<<<<< HEAD
-    alert("http://crowd.fi.uncoma.edu.ar/t-crowd/api/tdl2TDLLiteFPX_tbox/");
-=======
     alert(data);
->>>>>>> master
   });
 }
 
