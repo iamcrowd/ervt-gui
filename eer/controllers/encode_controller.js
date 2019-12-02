@@ -41,14 +41,6 @@ EncodeController = class EncodeController {
 
 }
 
-/*
-function checkSatisfiability(){
-  s = ServerConnection.intialise();
-  return s.request_satisfiable(exportTemporalJSON(),'NuSMV', function(data) {
-    console.log(data);
-  });
-}*/
-
 
 exports = exports != null ? exports : this;
 exports.eer = (ref = exports.eer) != null ? ref : this;
