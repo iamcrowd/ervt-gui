@@ -44,8 +44,7 @@ a particular entity is non empty), i.e, KB /\ Entity.
            </div>
 
 	          <div class="modal-body">
-		            <textarea class="form-control" id="insert_query_input" rows="5">
-                </textarea>
+		            <textarea class="form-control" id="insert_query_input" rows="3"></textarea>
 	         </div>
 
 	         <div class="modal-footer">
