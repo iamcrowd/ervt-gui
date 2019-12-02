@@ -34,6 +34,28 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
 
 };
 
-exports.eer.views.WidgetMgr = WidgetMgr;
+ToolBarWidget = class ToolBarWidget extends WidgetMgr {
+  constructor(){
+    super();
+    this.toolbar = new views.toolbar.ToolBarView({
+      el: $("#navbar_placeholder")
+    });
+  }
 
+  show() {
+    return this.toolbar.enable();
+  }
+}
+
+function addToolBar(){
+  toolbar = new ToolBarWidget();
+  toolbar.show();
+}
+
+exports.eer.views.WidgetMgr = WidgetMgr;
 exports.eer.views.QueriesWidgets = QueriesWidgets;
+exports.eer.views.ToolBarWidget = ToolBarWidget;
+
+exports.eer.views.ToolBarWidget.addToolBar = function() {
+  return exports.eer.views.ToolBarWidget.addToolBar();
+};

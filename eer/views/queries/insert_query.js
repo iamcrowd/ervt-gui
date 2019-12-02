@@ -1,4 +1,3 @@
-
   var QueryInsertView, exports, ref, ref1;
 
   exports = exports != null ? exports : this;
