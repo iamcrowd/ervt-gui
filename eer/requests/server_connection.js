@@ -1,4 +1,4 @@
-var ServerConnection, exports;
+var ServerConnection, exports, ref, ref1;
 
 
 ServerConnection = class ServerConnection {
@@ -51,17 +51,26 @@ ServerConnection = class ServerConnection {
 
 
 function checkSatisfiability(){
-  return ServerConnection.request_satisfiable(exportTemporalJSON(),'NuSMV', function(data) {
+  s = ServerConnection.intialise();
+  return s.request_satisfiable(exportTemporalJSON(),'NuSMV', function(data) {
     console.log(data);
   });
 }
 
 function encodeERvt(){
-  return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
+  s = ServerConnection.intialise();
+  return s.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
     console.log(data);
     alert(data);
   });
 }
 
 exports = exports != null ? exports : this;
-exports.ServerConnection = new ServerConnection;
+exports.eer = (ref = exports.eer) != null ? ref : this;
+exports.eer.requests = (ref = exports.eer.requests) != null ? ref : this;
+
+exports.eer.requests.ServerConnection = ServerConnection;
+
+exports.eer.requests.ServerConnection.intialise = function() {
+  return exports.eer.requests.ServerConnection = new ServerConnection();
+};
