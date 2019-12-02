@@ -28,13 +28,16 @@ ToolBarView = Backbone.View.extend({
     exportTemporalJSON();
   },
   insert_query: function() {
-    insertQuery();
+    query = new Queries();
+    query.insertQuery();
   },
   tdllitefpx: function() {
-    encodeERvt();
+    controller = new EncodeController();
+    controller.encodeERvtIntoTDLliteFPX();
   },
   sat: function() {
-    console.log("SAT");
+    sat = new SatController();
+    sat.checkSatisfiability();
   },
   // Show and enable the widget.
   enable: function() {

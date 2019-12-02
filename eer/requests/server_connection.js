@@ -16,7 +16,7 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable(json, reasoner, callback_function) {
+  request_satisfiable(json, query, reasoner, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/satisfiable.php";
@@ -26,6 +26,7 @@ ServerConnection = class ServerConnection {
       data: {
         "reasoner": reasoner,
         "json": json,
+        "query" : query,
       },
       success: callback_function,
       error: this.error_callback
@@ -47,22 +48,6 @@ ServerConnection = class ServerConnection {
       error: this.error_callback
     });
   }
-}
-
-
-function checkSatisfiability(){
-  s = ServerConnection.intialise();
-  return s.request_satisfiable(exportTemporalJSON(),'NuSMV', function(data) {
-    console.log(data);
-  });
-}
-
-function encodeERvt(){
-  s = ServerConnection.intialise();
-  return s.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
-    console.log(data);
-    alert(data);
-  });
 }
 
 exports = exports != null ? exports : this;

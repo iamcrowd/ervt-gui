@@ -10,6 +10,7 @@
 
   // A view for inserting and editing queries.
   QueryInsertView = Backbone.View.extend({
+
     initialize: function() {
       this.render();
       return this.textarea = this.$el.find("#insert_query_input");
@@ -22,16 +23,16 @@
     events: {
     },
     get_query: function() {
-      return this.textarea[0].value;
-    },
-    set_query: function(str) {
-      return this.textarea[0].value = str;
+      return $("#insert_query_input").val();
     },
     append_query: function(str) {
       return this.textarea[0].value = this.textarea[0].value + str;
     },
     show: function() {
       return $("#insertquery_widget").modal("show");
+    },
+    hide: function() {
+      return $("#insertquery_widget").modal("hide");
     }
   });
 

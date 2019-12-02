@@ -28,6 +28,10 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
     return this.queryinsert.set_query(str);
   }
 
+  get_query(){
+    return this.queryinsert.get_query();
+  }
+
   show() {
     return this.queryinsert.show();
   }

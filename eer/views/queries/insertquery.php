@@ -40,7 +40,7 @@
              <strong>!</strong>
              These queries will be asserted to the KB when checking for
              entities consistency (whether there is a model where
-a particular entity is non empty), i.e, KB /\ Entity. 
+a particular entity is non empty), i.e, KB /\ Entity.
            </div>
 
 	          <div class="modal-body">

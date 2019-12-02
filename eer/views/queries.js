@@ -19,11 +19,11 @@ Queries = class Queries {
   insertQuery(){
     this.querywidget.show();
   }
-};
 
-function insertQuery(){
-  query = new Queries();
-  query.insertQuery();
-}
+  getQuery() {
+    return this.querywidget.get_query();
+  }
+
+};
 
 exports.eer.views.Queries = Queries;
