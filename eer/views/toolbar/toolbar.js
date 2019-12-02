@@ -25,13 +25,13 @@ ToolBarView = Backbone.View.extend({
     'click a#sat': 'sat',
   },
   export_json: function() {
-    console.log("EXPORT JSON");
+    exportTemporalJSON();
   },
   insert_query: function() {
-    console.log("Insert QUERY");
+    insertQuery();
   },
   tdllitefpx: function() {
-    console.log("TDLliteFPX");
+    encodeERvt();
   },
   sat: function() {
     console.log("SAT");
