@@ -23,5 +23,6 @@
 
 
 insert_template("insertquery","queries");
+insert_template("toolbar","toolbar");
 
 ?>
