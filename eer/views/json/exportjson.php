@@ -39,8 +39,8 @@
 	    </div>
 
 	    <div class="modal-body">
-		<p>Use the Refresh button to refresh the JSON content with the last modifications.</p>
-		<textarea class="form-control" id="exportjson_input"  rows="5"><%= jsonstr %></textarea>
+		<p>Use the <span class="badge badge-secondary">Refresh</span> for getting JSON updates</p>
+		<textarea class="form-control" id="exportjson_input"  rows="10"><%= jsonstr %></textarea>
 		<div class="btn-group" role="group">
 		    <button id="exportjson_copybtn" class="btn btn-secondary">
 			Copy
