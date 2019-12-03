@@ -30,7 +30,6 @@ ToolBarView = Backbone.View.extend({
     this.jsonwidget.show();
   },
   insert_query: function() {
-    //query = new Queries();
     this.query.insertQuery();
   },
   tdllitefpx: function() {
