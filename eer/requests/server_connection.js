@@ -63,5 +63,5 @@ exports.eer.requests.ServerConnection.intialise = function() {
 };
 
 exports.eer.requests.ServerConnection.get_urlprefix = function() {
-  return exports.eer.requests.ServerConnection.urlprefix = "http://localhost/";
+  return exports.eer.requests.ServerConnection.urlprefix = "http://crowd.fi.uncoma.edu.ar/";
 };
