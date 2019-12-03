@@ -24,5 +24,6 @@
 
 insert_template("insertquery","queries");
 insert_template("toolbar","toolbar");
+insert_template("exportjson","json");
 
 ?>

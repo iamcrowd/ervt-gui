@@ -11,6 +11,7 @@ exports.eer.views.toolbar = (ref1 = exports.eer.views.toolbar) != null ? ref1 : 
 ToolBarView = Backbone.View.extend({
   initialize: function() {
     this.render();
+    this.jsonwidget = new JSONWidgets();
   },
 
   render: function() {
@@ -25,7 +26,7 @@ ToolBarView = Backbone.View.extend({
     'click a#sat': 'sat',
   },
   export_json: function() {
-    exportTemporalJSON();
+    this.jsonwidget.show();
   },
   insert_query: function() {
     query = new Queries();

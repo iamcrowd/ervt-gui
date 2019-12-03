@@ -1,4 +1,4 @@
-var QueriesWidgets, WidgetMgr, exports, ref;
+var QueriesWidgets, WidgetMgr, JSONWidgets, exports, ref;
 
 exports = exports != null ? exports : this;
 
@@ -12,7 +12,6 @@ WidgetMgr = class WidgetMgr {
 };
 
 // @namespace eer.views
-
 // Common widgets
 QueriesWidgets = class QueriesWidgets extends WidgetMgr {
   constructor() {
@@ -38,6 +37,24 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
 
 };
 
+// @namespace eer.views
+JSONWidgets = class JSONWidgets extends WidgetMgr {
+  constructor() {
+    super();
+    // Details page elements
+    this.json = new views.json.ExportJSONView(
+      {el: $("#json_place")});
+  }
+
+  exportjson() {
+    this.json.refresh();
+  }
+
+  show() {
+    return this.json.show();
+  }
+};
+
 ToolBarWidget = class ToolBarWidget extends WidgetMgr {
   constructor(){
     super();
@@ -58,6 +75,7 @@ function addToolBar(){
 
 exports.eer.views.WidgetMgr = WidgetMgr;
 exports.eer.views.QueriesWidgets = QueriesWidgets;
+exports.eer.views.JSONWidgets = JSONWidgets;
 exports.eer.views.ToolBarWidget = ToolBarWidget;
 
 exports.eer.views.ToolBarWidget.addToolBar = function() {
