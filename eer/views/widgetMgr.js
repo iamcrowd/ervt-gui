@@ -1,4 +1,4 @@
-var QueriesWidgets, WidgetMgr, JSONWidgets, exports, ref;
+var QueriesWidgets, WidgetMgr, JSONWidgets, ClockWidgets, OutputWidgets, ToolBarWidget, exports, ref;
 
 exports = exports != null ? exports : this;
 
@@ -20,8 +20,6 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
     this.queryinsert = new views.queries.QueryInsertView(
       {el: $("#query_place")});
   }
-
-
   // @param str {string} Query data.
   set_insert_query(str) {
     return this.queryinsert.set_query(str);
@@ -34,7 +32,6 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
   show() {
     return this.queryinsert.show();
   }
-
 };
 
 // @namespace eer.views
@@ -55,12 +52,56 @@ JSONWidgets = class JSONWidgets extends WidgetMgr {
   }
 };
 
+// @namespace eer.views
+ClockWidgets = class ClockWidgets extends WidgetMgr {
+  constructor() {
+    super();
+    // Details page elements
+    this.clock = new views.toolbar.ClockView(
+      {el: $("#clock_place")});
+  }
+
+  show() {
+    return this.clock.show();
+  }
+
+  hide() {
+    return this.clock.hide();
+  }
+
+  focus() {
+    return this.clock.focus();
+  }
+};
+
+// @namespace eer.views
+OutputWidgets = class OutputWidgets extends WidgetMgr {
+  constructor() {
+    super();
+    // Details page elements
+    this.outputView = new views.toolbar.OutputView(
+      {el: $("#output_place")});
+  }
+
+  show(data) {
+    return this.outputView.show(data);
+  }
+
+  hide() {
+    return this.outputView.hide();
+  }
+};
+
 ToolBarWidget = class ToolBarWidget extends WidgetMgr {
   constructor(){
     super();
     this.toolbar = new views.toolbar.ToolBarView({
       el: $("#navbar_placeholder")
     });
+  }
+
+  get_view() {
+    return this.toolbar;
   }
 
   show() {
@@ -76,6 +117,8 @@ function addToolBar(){
 exports.eer.views.WidgetMgr = WidgetMgr;
 exports.eer.views.QueriesWidgets = QueriesWidgets;
 exports.eer.views.JSONWidgets = JSONWidgets;
+exports.eer.views.ClockWidgets = ClockWidgets;
+exports.eer.views.OutputWidgets = OutputWidgets;
 exports.eer.views.ToolBarWidget = ToolBarWidget;
 
 exports.eer.views.ToolBarWidget.addToolBar = function() {

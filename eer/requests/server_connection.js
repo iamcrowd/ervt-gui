@@ -51,11 +51,17 @@ ServerConnection = class ServerConnection {
 }
 
 exports = exports != null ? exports : this;
+
 exports.eer = (ref = exports.eer) != null ? ref : this;
-exports.eer.requests = (ref = exports.eer.requests) != null ? ref : this;
+
+exports.eer.requests = (ref1 = exports.eer.requests) != null ? ref1 : this;
 
 exports.eer.requests.ServerConnection = ServerConnection;
 
 exports.eer.requests.ServerConnection.intialise = function() {
   return exports.eer.requests.ServerConnection = new ServerConnection();
+};
+
+exports.eer.requests.ServerConnection.get_urlprefix = function() {
+  return exports.eer.requests.ServerConnection.urlprefix = "http://localhost/";
 };

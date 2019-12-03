@@ -1,11 +1,11 @@
 <?php
 /*
 
-   Copyright 2018 Giménez, Christian
+   Copyright 2019 GILIA
 
-   Author: Giménez, Christian
+   Author: GILIA
 
-   placeholders.php
+   clock.php
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -24,7 +24,24 @@
 
 ?>
 
-<div id="query_place"></div>
-<div id="json_place"></div>
-<div id="clock_place"></div>
-<div id="output_place"></div>
+<div class="modal fade" id="clock" tabindex="-1" role="dialog"
+     aria-labelledby="clock_wait_widget" aria-hidden="true">
+
+    <div class="modal-dialog">
+	     <div class="modal-content">
+
+	    <div class="modal-header">
+		<h5 class="modal-title">Reasoning and Compiling Results...could take few seconds!</h5>
+	    </div>
+
+	    <div class="modal-body">
+
+        <center>
+          <img id="clock_img" src="imgs/clock.gif" alt="Reasoning...Please Wait for results!"/>
+        </center>
+      </div>
+
+	</div>
+    </div>
+
+</div>

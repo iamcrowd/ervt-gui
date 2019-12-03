@@ -135,6 +135,8 @@ require_once('template.php');
 <script src="./eer/views/json/exportjson.js"></script>
 <script src="./eer/views/widgetMgr.js"></script>
 <script src="./eer/views/queries.js"></script>
+<script src="./eer/views/toolbar/clock.js"></script>
+<script src="./eer/views/toolbar/output.js"></script>
 <script src="./eer/views/toolbar/toolbar.js"></script>
 <script src="./eer/controllers/encode_controller.js"></script>
 <script src="./eer/controllers/sat_controller.js"></script>

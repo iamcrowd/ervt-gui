@@ -24,6 +24,8 @@
 
 insert_template("insertquery","queries");
 insert_template("toolbar","toolbar");
+insert_template("clock","toolbar");
+insert_template("output","toolbar");
 insert_template("exportjson","json");
 
 ?>

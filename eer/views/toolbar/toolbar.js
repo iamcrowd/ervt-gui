@@ -13,6 +13,8 @@ ToolBarView = Backbone.View.extend({
     this.render();
     this.jsonwidget = new JSONWidgets();
     this.query = new Queries();
+    this.clock = new ClockWidgets();
+    this.output = new OutputWidgets();
   },
 
   render: function() {
@@ -25,6 +27,13 @@ ToolBarView = Backbone.View.extend({
     'click a#insert-query': 'insert_query',
     'click a#tdllitefpx': 'tdllitefpx',
     'click a#sat': 'sat',
+  },
+
+  get_outputwidget: function(){
+    return this.output;
+  },
+  get_clockwidget: function(){
+    return this.clock;
   },
   export_json: function() {
     this.jsonwidget.show();
