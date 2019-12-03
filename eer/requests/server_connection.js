@@ -1,4 +1,4 @@
-var ServerConnection, exports;
+var ServerConnection, exports, ref, ref1;
 
 
 ServerConnection = class ServerConnection {
@@ -16,7 +16,7 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable(json, reasoner, callback_function) {
+  request_satisfiable(json, query, reasoner, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/satisfiable.php";
@@ -26,6 +26,7 @@ ServerConnection = class ServerConnection {
       data: {
         "reasoner": reasoner,
         "json": json,
+        "query" : query,
       },
       success: callback_function,
       error: this.error_callback
@@ -49,21 +50,12 @@ ServerConnection = class ServerConnection {
   }
 }
 
-
-function checkSatisfiability(){
-  return ServerConnection.request_satisfiable(exportTemporalJSON(),'NuSMV', function(data) {
-    console.log(data);
-  });
-}
-
-function encodeERvt(){
-  return ServerConnection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
-    console.log(data);
-    var str = data.split("/var/www/html/");
-    var url =  "http://crowd.fi.uncoma.edu.ar/" + str[1];
-    alert("Browse TBox folder at: "+url);
-  });
-}
-
 exports = exports != null ? exports : this;
-exports.ServerConnection = new ServerConnection;
+exports.eer = (ref = exports.eer) != null ? ref : this;
+exports.eer.requests = (ref = exports.eer.requests) != null ? ref : this;
+
+exports.eer.requests.ServerConnection = ServerConnection;
+
+exports.eer.requests.ServerConnection.intialise = function() {
+  return exports.eer.requests.ServerConnection = new ServerConnection();
+};
