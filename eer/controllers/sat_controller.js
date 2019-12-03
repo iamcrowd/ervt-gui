@@ -19,6 +19,7 @@ SatController = class SatController {
   checkSatisfiability() {
       return this.connection.request_satisfiable(exportTemporalJSON(), this.query, 'NuSMV', function(data) {
         console.log(data);
+        alert(data);
       })
   }
 
