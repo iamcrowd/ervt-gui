@@ -42,7 +42,9 @@
 	    <div class="modal-body">
 
         <center>
-          <a id="link" href="#" target="_blank"> <strong>follow me to discover the outputs files</strong> <a/>
+          <a id="link"> <strong>follow this link to discover the outputs files</strong> <a/>
+          </br>
+          <a id="text"> </a>
         </center>
 
       </div>

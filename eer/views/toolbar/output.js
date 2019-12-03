@@ -19,7 +19,8 @@ OutputView = Backbone.View.extend({
     return this.$el.html(template({}));
   },
   show: function(data) {
-    $("#link").attr("href", data);
+    prefix = eer.requests.ServerConnection.get_urlprefix();
+    $("#text").text(prefix+data);
     return $("#output").modal("show");
   },
   hide: function() {

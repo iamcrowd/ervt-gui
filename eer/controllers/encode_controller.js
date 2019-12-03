@@ -13,10 +13,12 @@ EncodeController = class EncodeController {
 
   encodeERvtIntoTDLliteFPX() {
       eer.views.toolbar.get_view().get_clockwidget().show();
-      
+
       return this.connection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
-        eer.views.toolbar.get_view().get_outputwidget().show(data);
+        var str = data.split("/var/www/html/");
+        var url =  str[1];
+        eer.views.toolbar.get_view().get_outputwidget().show(url);
       })
   }
 

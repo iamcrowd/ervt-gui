@@ -17,9 +17,13 @@ SatController = class SatController {
   }
 
   checkSatisfiability() {
+      eer.views.toolbar.get_view().get_clockwidget().show();
+
       return this.connection.request_satisfiable(exportTemporalJSON(), this.query, 'NuSMV', function(data) {
-        console.log(data);
-        alert(data);
+        eer.views.toolbar.get_view().get_clockwidget().hide();
+        var str = data.split("/var/www/html/");
+        var url =  str[1];
+        eer.views.toolbar.get_view().get_outputwidget().show(url);
       })
   }
 
