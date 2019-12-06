@@ -33,7 +33,7 @@ ServerConnection = class ServerConnection {
     });
   }
 
-  request_encoding(json, formal, callback_function) {
+  request_encoding(json, data, formal, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/encoding.php";
@@ -43,6 +43,7 @@ ServerConnection = class ServerConnection {
       data: {
         "formal": formal,
         "json": json,
+        "data": data,
       },
       success: callback_function,
       error: this.error_callback

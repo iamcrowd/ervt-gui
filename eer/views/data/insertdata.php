@@ -43,16 +43,18 @@
 
            <div class="alert alert-warning">
              <strong>Abox syntax</strong></br>
-             Concepts: <span class="badge badge-secondary">Person(Maria,n)</span> </br>
-             Roles: <span class="badge badge-secondary">Surname(Maria,Clinton,n)</span> where n is an integer number.
+
+             <span class="badge badge-secondary">{"concepts": [Person(Maria,n)],
+              "roles":[Surname(Maria,Clinton,n)]}</span> </br>
+              n is an integer number.
            </div>
 
 	          <div class="modal-body">
-		            <textarea class="form-control" id="insert_data_input" rows="10"></textarea>
+		            <textarea class="form-control" id="insert_data_input" rows="10">{"concepts":[],"roles":[]}</textarea>
 	         </div>
 
 	         <div class="modal-footer">
-		           <button type="button" class="btn btn-primary" data-dismiss="modal">
+		           <button type="button" id="abox" class="btn btn-primary" data-dismiss="modal">
                  Close
                </button>
 	        </div>

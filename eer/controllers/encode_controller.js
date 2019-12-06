@@ -1,10 +1,11 @@
 var EncodeController, exports, ref, ref1;
 
-
 EncodeController = class EncodeController {
 
   constructor() {
     this.connection = new ServerConnection();
+    this.tbox = exportTemporalJSON();
+    this.data = eer.views.toolbar.get_view().get_datawidget().get_data();
   }
 
   getConnection() {
@@ -13,8 +14,7 @@ EncodeController = class EncodeController {
 
   encodeERvtIntoTDLliteFPX() {
       eer.views.toolbar.get_view().get_clockwidget().show();
-
-      return this.connection.request_encoding(exportTemporalJSON(),'tdllitefpx', function(data) {
+      return this.connection.request_encoding(this.tbox, this.data, 'tdllitefpx', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
         var str = data.split("/var/www/html/");
         var url =  str[1];
@@ -23,21 +23,21 @@ EncodeController = class EncodeController {
   }
 
   encodeERvtIntoQTLZ() {
-      return this.connection.request_encoding(exportTemporalJSON(),'qtlz', function(data) {
+      return this.connection.request_encoding(this.tbox,'qtlz', function(data) {
         console.log(data);
         alert(data);
       })
   }
 
   encodeERvtIntoQTLN() {
-      return this.connection.request_encoding(exportTemporalJSON(),'qtln', function(data) {
+      return this.connection.request_encoding(this.tbox,'qtln', function(data) {
         console.log(data);
         alert(data);
       })
   }
 
   encodeERvtIntoLTL() {
-      return this.connection.request_encoding(exportTemporalJSON(),'ltl', function(data) {
+      return this.connection.request_encoding(this.tbox,'ltl', function(data) {
         console.log(data);
         alert(data);
       })

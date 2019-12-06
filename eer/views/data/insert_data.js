@@ -21,6 +21,7 @@ DataInsertView = Backbone.View.extend({
     return this.$el.html(template());
   },
   events: {
+    'click button#abox': 'get_data',
   },
   get_data: function() {
     return $("#insert_data_input").val();
