@@ -37,8 +37,8 @@ require_once('template.php');
 				<a class="btn btn-sm btn-outline-dark" href="http://faiweb.uncoma.edu.ar/" target="_black" role="button">
 							<img src="imgs/unco.png" height="32" alt="uncoma">
 				</a>
-				<a class="btn btn-sm btn-outline-dark" href="https://lissi.cs.uns.edu.ar/" target="_black" role="button">
-							<img src="imgs/uns.gif" height="32" alt="uns">
+				<a class="btn btn-sm btn-outline-dark" href="https://www.inf.unibz.it/krdb/" target="_black" role="button">
+							<img src="imgs/unibz.png" height="32" alt="unibz">
 				</a>
 			</div>
 		</nav>
