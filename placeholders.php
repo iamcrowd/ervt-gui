@@ -25,6 +25,7 @@
 ?>
 
 <div id="query_place"></div>
+<div id="data_place"></div>
 <div id="json_place"></div>
 <div id="clock_place"></div>
 <div id="output_place"></div>

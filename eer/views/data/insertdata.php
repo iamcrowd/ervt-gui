@@ -5,7 +5,7 @@
 
    Author: gab
 
-   insertquery.php
+   insertdata.php
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,14 +23,14 @@
 
 
 ?>
-<div class="modal fade show" tabindex="-1" role="dialog" id="insertquery_widget"
-     aria-labelledby="insertquery_widget" aria-hidden="true">
+<div class="modal fade show" tabindex="-1" role="dialog" id="insertdata_widget"
+     aria-labelledby="insertdata_widget" aria-hidden="true">
 
      <div class="modal-dialog modal-dialog-centered" role="document">
 	      <div class="modal-content">
 
 	         <div class="modal-header">
-		           <h4 class="modal-title">Entity Consistency Queries</h4>
+		           <h4 class="modal-title">Insert Temporal Data</h4>
 		             <button type="button" class="close" data-dismiss="modal" aria-label="close">
 		                 <span aria-hidden="true">&times;</span>
 		             </button>
@@ -38,13 +38,17 @@
 
            <div class="alert alert-info">
              <strong>!</strong>
-             These queries will be asserted to the KB when checking for
-             entities consistency (whether there is a model where
-a particular entity is non empty), i.e, KB /\ Entity.
+             These temporal data (ABox) will be asserted to the KB, i.e, TBox /\ ABox.
+           </div>
+
+           <div class="alert alert-warning">
+             <strong>Abox syntax</strong></br>
+             Concepts: <span class="badge badge-secondary">Person(Maria,n)</span> </br>
+             Roles: <span class="badge badge-secondary">Surname(Maria,Clinton,n)</span> where n is an integer number.
            </div>
 
 	          <div class="modal-body">
-		            <textarea class="form-control" id="insert_query_input" rows="10"></textarea>
+		            <textarea class="form-control" id="insert_data_input" rows="10"></textarea>
 	         </div>
 
 	         <div class="modal-footer">

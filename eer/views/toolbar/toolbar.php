@@ -53,25 +53,12 @@
         <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" id="insert-query">Insert Query</a>
         <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" id="insert-data">Insert Temporal Data</a>
+        <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" id="tdllitefpx">TDL-LiteFPX Encoding</a>
         <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" id="sat">Satisfiability</a>
 	   </div>
   </div>
-
-
-<!--  <div class="nav-item dropdown">
-
-	<a role="button" class="nav-link dropdown-toggle" href="#"
-	   id="dropdown-btn" data-toggle="dropdown"
-	   aria-haspopup="true" aria-expanded="false">
-	    Reasoning
-	</a>
-
-	<div class="dropdown-menu" aria-labelledby="dropdown-btn">
-	    <a class="dropdown-item" href="#" id="menu-check-consistency">Start Reasoner</a>
-      <a class="dropdown-item" href="#" id="reasoning-output">Reasoning Output</a>
-	</div>
-</div>-->
 
 </div>

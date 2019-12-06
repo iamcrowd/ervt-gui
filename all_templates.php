@@ -23,6 +23,7 @@
 
 
 insert_template("insertquery","queries");
+insert_template("insertdata","data");
 insert_template("toolbar","toolbar");
 insert_template("clock","toolbar");
 insert_template("output","toolbar");

@@ -13,6 +13,7 @@ ToolBarView = Backbone.View.extend({
     this.render();
     this.jsonwidget = new JSONWidgets();
     this.query = new Queries();
+    this.data = new DataWidgets();
     this.clock = new ClockWidgets();
     this.output = new OutputWidgets();
   },
@@ -25,6 +26,7 @@ ToolBarView = Backbone.View.extend({
   events: {
     'click a#export-json': 'export_json',
     'click a#insert-query': 'insert_query',
+    'click a#insert-data': 'insert_data',
     'click a#tdllitefpx': 'tdllitefpx',
     'click a#sat': 'sat',
   },
@@ -40,6 +42,9 @@ ToolBarView = Backbone.View.extend({
   },
   insert_query: function() {
     this.query.insertQuery();
+  },
+  insert_data: function() {
+    this.data.show();
   },
   tdllitefpx: function() {
     controller = new EncodeController();

@@ -132,6 +132,7 @@ require_once('template.php');
 <script src="./eer/js/utils.js"></script>
 <script src="./eer/requests/server_connection.js"></script>
 <script src="./eer/views/queries/insert_query.js"></script>
+<script src="./eer/views/data/insert_data.js"></script>
 <script src="./eer/views/json/exportjson.js"></script>
 <script src="./eer/views/widgetMgr.js"></script>
 <script src="./eer/views/queries.js"></script>
