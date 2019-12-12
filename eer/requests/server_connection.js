@@ -16,7 +16,7 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable(json, query, reasoner, callback_function) {
+  request_satisfiable(json, data, query, reasoner, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/satisfiable.php";
@@ -27,6 +27,7 @@ ServerConnection = class ServerConnection {
         "reasoner": reasoner,
         "json": json,
         "query" : query,
+        "data": data,
       },
       success: callback_function,
       error: this.error_callback

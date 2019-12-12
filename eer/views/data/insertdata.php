@@ -44,13 +44,15 @@
            <div class="alert alert-warning">
              <strong>Abox syntax</strong></br>
 
-             <span class="badge badge-secondary">{"concepts": [Person(Maria,n)],
-              "roles":[Surname(Maria,Clinton,n)]}</span> </br>
+             <span class="badge badge-secondary">{"concepts": [{"concept":"Person", "instance":"Maria", "timestamp":"n"}], </br></br>
+               "roles":[{"role":"Surname", "from":"Maria", "to":"Clinton","timestamp":"n"}]}</span> </br>
               n is an integer number.
            </div>
 
 	          <div class="modal-body">
-		            <textarea class="form-control" id="insert_data_input" rows="10">{"concepts":[],"roles":[]}</textarea>
+		            <textarea class="form-control"
+                          id="insert_data_input"
+                          rows="5">{"concepts": [{"concept":"", "instance":"", "timestamp":""}], "roles":[{"role":"", "from":"", "to":"","timestamp":""}]}</textarea>
 	         </div>
 
 	         <div class="modal-footer">

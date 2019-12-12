@@ -1,11 +1,13 @@
 var SatController, exports, ref, ref1;
 
 
-SatController = class SatController {
+SatController = class SatController extends Controller {
 
   constructor(query) {
     this.connection = new ServerConnection();
-    this.query = $("#insert_query_input").val();
+    this.query = eer.views.toolbar.get_view().get_querywidget().getQuery();
+    this.tbox = exportTemporalJSON();
+    this.data = eer.views.toolbar.get_view().get_datawidget().get_data();
   }
 
   getConnection() {
@@ -19,7 +21,7 @@ SatController = class SatController {
   checkSatisfiability() {
       eer.views.toolbar.get_view().get_clockwidget().show();
 
-      return this.connection.request_satisfiable(exportTemporalJSON(), this.query, 'NuSMV', function(data) {
+      return this.connection.request_satisfiable(this.tbox, this.abox, this.query, 'NuSMV', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
         var str = data.split("/var/www/html/");
         var url =  str[1];

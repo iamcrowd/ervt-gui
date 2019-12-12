@@ -37,6 +37,9 @@ ToolBarView = Backbone.View.extend({
   get_datawidget: function(){
     return this.data;
   },
+  get_querywidget: function(){
+    return this.query;
+  },
   get_clockwidget: function(){
     return this.clock;
   },

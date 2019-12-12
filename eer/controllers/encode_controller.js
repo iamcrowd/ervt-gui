@@ -1,6 +1,6 @@
 var EncodeController, exports, ref, ref1;
 
-EncodeController = class EncodeController {
+EncodeController = class EncodeController extends Controller{
 
   constructor() {
     this.connection = new ServerConnection();
