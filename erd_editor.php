@@ -37,8 +37,8 @@ require_once('template.php');
 				<a class="btn btn-sm btn-outline-dark" href="http://faiweb.uncoma.edu.ar/" target="_black" role="button">
 							<img src="imgs/unco.png" height="32" alt="uncoma">
 				</a>
-				<a class="btn btn-sm btn-outline-dark" href="https://lissi.cs.uns.edu.ar/" target="_black" role="button">
-							<img src="imgs/uns.gif" height="32" alt="uns">
+				<a class="btn btn-sm btn-outline-dark" href="https://www.inf.unibz.it/krdb/" target="_black" role="button">
+							<img src="imgs/unibz.png" height="32" alt="unibz">
 				</a>
 			</div>
 		</nav>
@@ -132,12 +132,14 @@ require_once('template.php');
 <script src="./eer/js/utils.js"></script>
 <script src="./eer/requests/server_connection.js"></script>
 <script src="./eer/views/queries/insert_query.js"></script>
+<script src="./eer/views/data/insert_data.js"></script>
 <script src="./eer/views/json/exportjson.js"></script>
 <script src="./eer/views/widgetMgr.js"></script>
 <script src="./eer/views/queries.js"></script>
 <script src="./eer/views/toolbar/clock.js"></script>
 <script src="./eer/views/toolbar/output.js"></script>
 <script src="./eer/views/toolbar/toolbar.js"></script>
+<script src="./eer/controllers/controller.js"></script>
 <script src="./eer/controllers/encode_controller.js"></script>
 <script src="./eer/controllers/sat_controller.js"></script>
 

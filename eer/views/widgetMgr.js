@@ -1,4 +1,4 @@
-var QueriesWidgets, WidgetMgr, JSONWidgets, ClockWidgets, OutputWidgets, ToolBarWidget, exports, ref;
+var QueriesWidgets, DataWidgets, WidgetMgr, JSONWidgets, ClockWidgets, OutputWidgets, ToolBarWidget, exports, ref;
 
 exports = exports != null ? exports : this;
 
@@ -31,6 +31,27 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
 
   show() {
     return this.queryinsert.show();
+  }
+};
+
+DataWidgets = class DataWidgets extends WidgetMgr {
+  constructor() {
+    super();
+    // Details page elements
+    this.datainsert = new views.data.DataInsertView(
+      {el: $("#data_place")});
+  }
+  // @param str {string} Query data.
+  set_insert_data(str) {
+    return this.datainsert.set_data(str);
+  }
+
+  get_data(){
+    return this.datainsert.get_data();
+  }
+
+  show() {
+    return this.datainsert.show();
   }
 };
 
@@ -116,6 +137,7 @@ function addToolBar(){
 
 exports.eer.views.WidgetMgr = WidgetMgr;
 exports.eer.views.QueriesWidgets = QueriesWidgets;
+exports.eer.views.DataWidgets = DataWidgets;
 exports.eer.views.JSONWidgets = JSONWidgets;
 exports.eer.views.ClockWidgets = ClockWidgets;
 exports.eer.views.OutputWidgets = OutputWidgets;
