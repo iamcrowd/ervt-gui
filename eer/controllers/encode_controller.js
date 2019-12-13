@@ -3,9 +3,10 @@ var EncodeController, exports, ref, ref1;
 EncodeController = class EncodeController extends Controller{
 
   constructor() {
+    super();
     this.connection = new ServerConnection();
     this.tbox = exportTemporalJSON();
-    this.data = eer.views.toolbar.get_view().get_datawidget().get_data();
+    this.data = this.exportTermporalData();
   }
 
   getConnection() {

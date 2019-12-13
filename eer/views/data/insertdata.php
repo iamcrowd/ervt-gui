@@ -52,7 +52,7 @@
 	          <div class="modal-body">
 		            <textarea class="form-control"
                           id="insert_data_input"
-                          rows="5">{"concepts": [{"concept":"", "instance":"", "timestamp":""}], "roles":[{"role":"", "from":"", "to":"","timestamp":""}]}</textarea>
+                          rows="5"></textarea>
 	         </div>
 
 	         <div class="modal-footer">
