@@ -1,0 +1,5 @@
+Person(John,0)
+Name(John,Mcking,0)
+Name(Maria,Kennedy,0)
+Name(John,Kennedy,1)
+Name(Ana,Kennedy,3)
