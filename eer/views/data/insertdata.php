@@ -44,9 +44,13 @@
            <div class="alert alert-warning">
              <strong>Abox syntax</strong></br>
 
-             <span class="badge badge-secondary">{"concepts": [{"concept":"Person", "instance":"Maria", "timestamp":"n"}], </br></br>
-               "roles":[{"role":"Surname", "from":"Maria", "to":"Clinton","timestamp":"n"}]}</span> </br>
-              n is an integer number.
+             <span class="badge badge-secondary">
+               Person(John,0) </br>
+               Name(John,Mcking,0) </br>
+               Name(Maria,Kennedy,0) </br>
+               Name(John,Kennedy,1) </br>
+               Name(Ana,Kennedy,n)</span> </br>
+              n is an integer number. only one assertion per line and \n
            </div>
 
 	          <div class="modal-body">
