@@ -1,0 +1,6 @@
+Minor(John,0)
+Adult(John,1)
+Minor(John,2)
+Adult(John,3)
+Adult(John,4)
+Adult(John,5)

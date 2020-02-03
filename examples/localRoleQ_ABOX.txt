@@ -1,0 +1,4 @@
+Person(John,0)
+Salary(John,S1,0)
+Salary(John,S1,1)
+Salary(John,S1,2)
