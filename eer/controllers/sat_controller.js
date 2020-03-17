@@ -19,10 +19,21 @@ SatController = class SatController extends Controller {
     return this.query;
   }
 
-  checkSatisfiability() {
+  checkPureFutureSatisfiability() {
       eer.views.toolbar.get_view().get_clockwidget().show();
 
-      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'NuSMV', function(data) {
+      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'TBoxSatNuSMV', function(data) {
+        eer.views.toolbar.get_view().get_clockwidget().hide();
+        var str = data.split("/var/www/html/");
+        var url =  str[1];
+        eer.views.toolbar.get_view().get_outputwidget().show(url);
+      })
+  }
+
+  checkPastABoxSatisfiability() {
+      eer.views.toolbar.get_view().get_clockwidget().show();
+
+      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'TBoxABoxSatNuSMV', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
         var str = data.split("/var/www/html/");
         var url =  str[1];

@@ -29,6 +29,8 @@ ToolBarView = Backbone.View.extend({
     'click a#insert-data': 'insert_data',
     'click a#tdllitefpx': 'tdllitefpx',
     'click a#sat': 'sat',
+    'click a#pastsat': 'pastsat',
+    'click a#pastsatabox': 'pastsatabox',
   },
 
   get_outputwidget: function(){
@@ -58,7 +60,11 @@ ToolBarView = Backbone.View.extend({
   },
   sat: function() {
     sat = new SatController();
-    sat.checkSatisfiability();
+    sat.checkPureFutureSatisfiability();
+  },
+  pastsatabox: function() {
+    sat = new SatController();
+    sat.checkPastABoxSatisfiability();
   },
   // Show and enable the widget.
   enable: function() {
