@@ -29,3 +29,4 @@
 <div id="json_place"></div>
 <div id="clock_place"></div>
 <div id="output_place"></div>
+<div id="form_random"></div>

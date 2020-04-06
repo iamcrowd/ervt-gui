@@ -1,4 +1,5 @@
-var QueriesWidgets, DataWidgets, WidgetMgr, JSONWidgets, ClockWidgets, OutputWidgets, ToolBarWidget, exports, ref;
+var QueriesWidgets, DataWidgets, WidgetMgr, JSONWidgets, ClockWidgets, OutputWidgets,
+FormWidgets, ToolBarWidget, exports, ref;
 
 exports = exports != null ? exports : this;
 
@@ -31,6 +32,21 @@ QueriesWidgets = class QueriesWidgets extends WidgetMgr {
 
   show() {
     return this.queryinsert.show();
+  }
+};
+
+// @namespace eer.views
+// Common widgets
+FormWidgets = class FormWidgets extends WidgetMgr {
+  constructor() {
+    super();
+    // Details page elements
+    this.random = new views.randomTKB.FormView(
+      {el: $("#form_random")});
+  }
+
+  show() {
+    return this.random.show();
   }
 };
 
@@ -142,6 +158,7 @@ exports.eer.views.JSONWidgets = JSONWidgets;
 exports.eer.views.ClockWidgets = ClockWidgets;
 exports.eer.views.OutputWidgets = OutputWidgets;
 exports.eer.views.ToolBarWidget = ToolBarWidget;
+exports.eer.views.FormWidget = FormWidgets;
 
 exports.eer.views.ToolBarWidget.addToolBar = function() {
   return exports.eer.views.ToolBarWidget.addToolBar();

@@ -43,45 +43,6 @@ require_once('template.php');
 			</div>
 		</nav>
 
-<!--		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<button class="navbar-toggler" type="button"
-				data-toggle="collapse" data-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav mr-auto">
-
-					<a class="navbar-brand crowd-header text-white">ERvt-crowd<span class="crowdforteens-header text-white"></span>
-
-	  			<div class="nav-item dropdown">
-						<a role="button" class="nav-link dropdown-toggle" href="#"
-				   			id="ervt-dropdown-btn" data-toggle="dropdown"
-				   			aria-haspopup="true" aria-expanded="false">
-								Model
-						</a>
-						<div class="dropdown-menu" aria-labelledby="ervt-dropdown-btn">
-				    	<a class="dropdown-item" href="#" id="json">Export to JSON</a>
-						</div>
-					</div>
-
-		<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="json"
-				onclick="exportTemporalJSON()">JSON</button><span>Export JSON diagram</span></a>
-			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="inference"
-				onclick="checkSatisfiability()">SAT</button><span>Sat</span></a>
-			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="tdllitefpx"
-				onclick="encodeERvt()">TDLliteFPX</button><span>TDLliteFPX</span></a>
-			<a class="tooltipsbottom" href="#"><button class="btn-group menubutton" type="button" id="insertquery"
-				onclick="insertQuery()">Query</button><span>Query</span></a>
-
-			<a class="unco btn btn-sm btn-outline-dark" href="http://faiweb.uncoma.edu.ar/" target="_blank" role="button">
-				<img src="imgs/unco.png" height="32" alt="uncoma" />
-			</a>
-
-		</ul>
-	</nav>-->
-
 
 	</header>
 
@@ -131,6 +92,7 @@ require_once('template.php');
 <script src="./eer/js/temperd.js"></script>
 <script src="./eer/js/utils.js"></script>
 <script src="./eer/requests/server_connection.js"></script>
+
 <script src="./eer/views/queries/insert_query.js"></script>
 <script src="./eer/views/data/insert_data.js"></script>
 <script src="./eer/views/json/exportjson.js"></script>
@@ -139,6 +101,8 @@ require_once('template.php');
 <script src="./eer/views/toolbar/clock.js"></script>
 <script src="./eer/views/toolbar/output.js"></script>
 <script src="./eer/views/toolbar/toolbar.js"></script>
+<script src="./eer/views/randomTKB/form.js"></script>
+
 <script src="./eer/controllers/controller.js"></script>
 <script src="./eer/controllers/encode_controller.js"></script>
 <script src="./eer/controllers/sat_controller.js"></script>

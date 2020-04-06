@@ -81,4 +81,16 @@
      </div>
   </div>
 
+  <div class="nav-item dropdown">
+
+     <a role="button" class="nav-link dropdown-toggle" href="#"
+       id="ervt-dropdown-btn" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+         Random TKB
+     </a>
+      <div class="dropdown-menu" aria-labelledby="ervt-dropdown-btn">
+          <a class="dropdown-item" href="#" id="random">Generate Random TKB</a>
+     </div>
+  </div>
+
 </div>
