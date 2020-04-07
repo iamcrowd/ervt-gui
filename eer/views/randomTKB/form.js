@@ -30,7 +30,7 @@
       console.log("Q: " + $("#q").val());
       console.log("Pt: " + $("#pt").val());
       console.log("Rr: " + $("#pr").val());
-      console.log("Solver: " + $("#solver").val("option:selected"));
+      console.log("Solver: " + this.$el.find("select#solver").val());
     },
     show: function() {
       return $("#form_widget").modal("show");

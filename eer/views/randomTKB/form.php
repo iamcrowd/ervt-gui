@@ -44,27 +44,27 @@
 	          <div class="modal-body">
               <div class="row">
                 <div class="col-md-6">
-                    <label for="ci">CI:</label><br>
-		                <input type="number" min="1" max="1000" id="ci" name="CI"><br>
+                    <label for="ci">Ltbox:</label><br>
+		                <input type="number" title="Concept Inclusion set size" min="1" max="1000" id="ci" name="CI"><br>
                     <label for="n">N:</label><br>
-                    <input type="number" min="1" max="1000" id="n" name="N"><br>
+                    <input type="number" title="Concept set size" min="1" max="1000" id="n" name="N"><br>
                     <label for="pt">Pt:</label><br>
-                    <input type="number" id="pt" name="Pt"><br>
+                    <input type="number" title="Probability of generating Temporal Roles" id="pt" name="Pt"><br>
                 </div>
                 <div class="col-md-6">
-                    <label for="l">L:</label><br>
-                    <input type="number" min="1" max="1000"  id="l" name="L"><br>
-                    <label for="q">Q:</label><br>
-                    <input type="number" min="1" max="1000"  id="q" name="Q"><br>
+                    <label for="l">Lc:</label><br>
+                    <input type="number" title="Length of Concepts" min="1" max="1000"  id="l" name="L"><br>
+                    <label for="q">Qmax:</label><br>
+                    <input type="number" title="Max Cardinality of Quantified Roles" min="1" max="1000"  id="q" name="Q"><br>
                     <label for="pr">Pr:</label><br>
-                    <input type="number" id="pr" name="Pr"><br>
+                    <input type="number" title="Probability of generating Rigid Roles" id="pr" name="Pr"><br>
                 </div>
               </div><br>
 
              <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <label for="solver">Choose SAT solvers:</label><br>
-                <select name="solver">
+                <select name="solver" id="solver">
                   <option value="all" selected>All</option>
                   <option value="nusmv">NuSMV</option>
                   <option value="nuxmv">NuXMV</option>
@@ -72,6 +72,11 @@
                   <option value="aalta">Aalta</option>
                   <option value="trpuc">TRP++UC</option>
                 </select>
+              </div>
+              <div class="col-md-6">
+                <a style="color:blue;text-decoration: underline;"
+                   href="solversdetails.html" target="_blank"
+                   title="Go to Solver details page"> see Solver details </a>
               </div>
             </div>
 
