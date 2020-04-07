@@ -8,11 +8,45 @@
     <h3>TER Solver Details</h3>
 
       <p>Under construction</p>
-      
-      <p>NuSMV</p>
-      <p>NuXMV</p>
-      <p>Aalta</p>
-      <p>pltl</p>
-      <p>TRP++UC</p>
+
+      <h4><a href="http://nusmv.fbk.eu/" target="_blank">NuSMV</a></h4>
+        <p> NuSMV is a reimplementation and extension of SMV,
+          the first model checker based on BDDs. NuSMV has been designed to be an open architecture
+          for model checking, which can be reliably used for the verification of industrial designs,
+          as a core for custom verification tools, as a testbed for formal verification techniques,
+          and applied to other research areas. </p>
+
+      <h4><a href="https://es-static.fbk.eu/tools/nuxmv/index.php" target="_blank">NuXMV</a></h4>
+        <p> nuXmv new symbolic <b>model checker</b> for the analysis of synchronous finite-state
+           and infinite-state systems is OUT. </p>
+
+      <h4><a href="https://www.lab301.cn/aalta/node2.html" target="_blank">Aalta</a></h4>
+        <p>  Aalta(Another Algorithm for LTL To Büchi Automata) tool originally is developed as
+          an LTL-to-Büchi translator. Compared with the traditional tableau-based translation,
+          such as SPOT, it is implemented with a new algorithm, which introduces the concept of
+          Obligation Set for LTL formulas. More recently, a novel on-the-fly LTL satisfiability
+          checking algorithm is also proposed based on the Obligation Set.
+          So far, Aalta integrates two functions: LTL-to-Büchi translation and LTL satisfiability checking.
+          </p>
+
+      <h4><a href="http://users.cecs.anu.edu.au/~rpg/PLTLProvers/" target="_blank">pltl</a></h4>
+        <p> This prover implements two <b>tableau-based methods</b>: tree and graph.
+            The tree method builds a rooted tree with ancestor cycles and passes up information about
+            unfulfilled eventualities from the bottom up. It is based upon a method outlined by
+            Stefan Schwendimann. It is a "one-pass" method in that it identifies unfulfilled
+            eventualities without making any further passes of the tree that is built.
+            The method is suboptimal since its worst case behaviour requires double-exponential
+            time wrt the size of the input formula(e). The graph method also builds a rooted tree in a
+            depth first left to right manner, but allows cross branch edges from one branch to a
+            previous branch as well as ancestor cycles. It checks eventualities "on the fly",
+            and has worst case behaviour that is exponential wrt the size of the input formula(e). </p>
+            
+      <h4><a href="http://www.schuppan.de/viktor/trp++uc/" target="_blank">TRP++UC</a></h4>
+        <p>TRP++UC is a satisfiability solver for Linear Temporal Logic (LTL)
+          that can extract fine-grained unsatisfiable cores for LTL.
+          In particular, it annotates the subformulas of an unsatisfiable core with the time
+          points at which they are relevant for unsatisfiability or it identifies
+          groups of occurrences of a proposition that do not interact in a proof of unsatisfiability.
+          TRP++UC extends TRP++ by Boris Konev and Ullrich Hustadt, which is based on <b>temporal resolution</b>. </p>
   </body>
 </html>
