@@ -77,8 +77,7 @@
       <div class="dropdown-menu" aria-labelledby="ervt-dropdown-btn">
           <a class="dropdown-item" href="#" id="insert-query">Insert Query</a>
         <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" id="sat">(TBox,{}) Satisfiability (Pure Future)</a>
-          <a class="dropdown-item" href="#" id="pastsatabox">(TBox,ABox) Satisfiability (Past Ops)</a>
+          <a class="dropdown-item" href="#" id="sat">Satisfiability</a>
      </div>
   </div>
 
