@@ -2,21 +2,66 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>TER Solver Details</title>
+    <title>Random Temporal KB Details</title>
   </head>
   <body>
-    <h3>TER Solver Details</h3>
+    <h3>Random Temporal KB Details</h3>
 
-      <p>Under construction</p>
+      <h4><a>Random Parameters</a></h4>
 
-      <h4><a href="http://nusmv.fbk.eu/" target="_blank">NuSMV</a></h4>
+        <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-c3ow">Parameter</th>
+    <th class="tg-c3ow">Comment</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">N</td>
+    <td class="tg-c3ow">Number of Concepts</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Ltbox</td>
+    <td class="tg-c3ow">Number of Concepts Inclusion (CI)</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Lc</td>
+    <td class="tg-c3ow">Length of each Concept</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Qmax</td>
+    <td class="tg-c3ow">Maximum Cardinality for the Quantified Roles</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Pt</td>
+    <td class="tg-c3ow">Probability of generating Temporal Concepts</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Pr</td>
+    <td class="tg-c3ow">Probability of generating Rigid Roles</td>
+  </tr>
+</tbody>
+</table>
+
+
+      <h4><a href="http://nusmv.fbk.eu/" target="_blank">NuSMV-BDD/NuSMV-BMC</a></h4>
         <p> NuSMV is a reimplementation and extension of SMV,
           the first model checker based on BDDs. NuSMV has been designed to be an open architecture
           for model checking, which can be reliably used for the verification of industrial designs,
           as a core for custom verification tools, as a testbed for formal verification techniques,
           and applied to other research areas. </p>
 
-      <h4><a href="https://es-static.fbk.eu/tools/nuxmv/index.php" target="_blank">NuXMV</a></h4>
+      <h4><a href="https://es-static.fbk.eu/tools/nuxmv/index.php" target="_blank">nuXmv-BDD/nuXmv-BMC</a></h4>
         <p> nuXmv new symbolic <b>model checker</b> for the analysis of synchronous finite-state
            and infinite-state systems is OUT. </p>
 
@@ -29,7 +74,7 @@
           So far, Aalta integrates two functions: LTL-to-Büchi translation and LTL satisfiability checking.
           </p>
 
-      <h4><a href="http://users.cecs.anu.edu.au/~rpg/PLTLProvers/" target="_blank">pltl</a></h4>
+<!--      <h4><a href="http://users.cecs.anu.edu.au/~rpg/PLTLProvers/" target="_blank">pltl</a></h4>
         <p> This prover implements two <b>tableau-based methods</b>: tree and graph.
             The tree method builds a rooted tree with ancestor cycles and passes up information about
             unfulfilled eventualities from the bottom up. It is based upon a method outlined by
@@ -40,13 +85,13 @@
             depth first left to right manner, but allows cross branch edges from one branch to a
             previous branch as well as ancestor cycles. It checks eventualities "on the fly",
             and has worst case behaviour that is exponential wrt the size of the input formula(e). </p>
-            
+
       <h4><a href="http://www.schuppan.de/viktor/trp++uc/" target="_blank">TRP++UC</a></h4>
         <p>TRP++UC is a satisfiability solver for Linear Temporal Logic (LTL)
           that can extract fine-grained unsatisfiable cores for LTL.
           In particular, it annotates the subformulas of an unsatisfiable core with the time
           points at which they are relevant for unsatisfiability or it identifies
           groups of occurrences of a proposition that do not interact in a proof of unsatisfiability.
-          TRP++UC extends TRP++ by Boris Konev and Ullrich Hustadt, which is based on <b>temporal resolution</b>. </p>
+          TRP++UC extends TRP++ by Boris Konev and Ullrich Hustadt, which is based on <b>temporal resolution</b>. </p> -->
   </body>
 </html>

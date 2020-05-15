@@ -75,9 +75,10 @@
          Reasoning
      </a>
       <div class="dropdown-menu" aria-labelledby="ervt-dropdown-btn">
-          <a class="dropdown-item" href="#" id="insert-query">Insert Query</a>
-        <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" id="sat">Satisfiability</a>
+        <!--  <a class="dropdown-item" href="#" id="insert-query">Insert Query</a>
+        <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" href="#" id="satf">Satisfiability - Pure Future</a>
+          <a class="dropdown-item" href="#" id="sat">Satisfiability - Past/Future</a>
      </div>
   </div>
 

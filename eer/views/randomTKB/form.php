@@ -65,12 +65,14 @@
               <div class="col-md-6">
                 <label for="solver">Choose SAT solvers:</label><br>
                 <select name="solver" id="solver">
-                  <option value="all" selected>All</option>
-                  <option value="nusmv">NuSMV</option>
-                  <option value="nuxmv">NuXMV</option>
-                  <option value="pltl">pltl</option>
+                <!--  <option value="all" selected>All</option> -->
+                  <option value="nusmv-bdd">NuSMV-BDD</option>
+                  <option value="nusmv-bmc">NuSMV-BMC</option>
+                  <option value="nuxmv-bdd">nuxmv-BDD</option>
+                  <option value="nuxmv-bmc">nuxmv-BMC</option>
+                <!--  <option value="pltl">pltl</option> -->
                   <option value="aalta">Aalta</option>
-                  <option value="trpuc">TRP++UC</option>
+                <!--  <option value="trpuc">TRP++UC</option> -->
                 </select>
               </div>
               <div class="col-md-6">
