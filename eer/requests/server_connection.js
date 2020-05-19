@@ -16,7 +16,7 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable_nusmv(json, data, reasoner_sett, time, memory, callback_function) {
+  request_satisfiable_nusmv(json, data, reasoner_sett, ltl, time, memory, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/satisfiable_nusmv.php";
@@ -26,7 +26,8 @@ ServerConnection = class ServerConnection {
       data: {
         "reasoner_sett": reasoner_sett,
         "time": time,
-        "memory": memory
+        "memory": memory,
+        "ltl": ltl,
         "json": json,
         "data": data,
       },
@@ -39,7 +40,7 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable_nuxmv(json, data, reasoner_sett, time, memory, callback_function) {
+  request_satisfiable_nuxmv(json, data, reasoner_sett, ltl, time, memory, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
     url = this.urlprefix + "t-crowd/api/satisfiable_nuxmv.php";
@@ -49,7 +50,8 @@ ServerConnection = class ServerConnection {
       data: {
         "reasoner_sett": reasoner_sett,
         "time": time,
-        "memory": memory
+        "memory": memory,
+        "ltl": ltl,
         "json": json,
         "data": data,
       },
