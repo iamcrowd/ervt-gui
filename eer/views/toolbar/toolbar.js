@@ -63,8 +63,6 @@ ToolBarView = Backbone.View.extend({
   },
   satopts: function() {
     this.satform.show();
-  //  sat = new SatController();
-  //  sat.checkSatisfiability();
   },
   random: function(){
     this.random.show();

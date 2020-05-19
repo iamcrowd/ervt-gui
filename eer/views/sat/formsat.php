@@ -46,10 +46,14 @@
                <div class="col-md-6">
                  <label for="solver">Choose SAT solvers:</label><br>
                  <select name="solver" id="solver">
-                   <option value="nusmv-bdd">NuSMV-BDD</option>
-                   <option value="nusmv-bmc">NuSMV-BMC</option>
-                   <option value="nuxmv-bdd">nuxmv-BDD</option>
-                   <option value="nuxmv-bmc">nuxmv-BMC</option>
+                   <option value="nusmv-bdd">NuSMV-BDD-LTL</option>
+                   <option value="nusmv-bddp">NuSMV-BDD-LTLp</option>
+                   <option value="nusmv-bmc">NuSMV-BMC-LTL</option>
+                   <option value="nusmv-bmcp">NuSMV-BMC-LTLp</option>
+                   <option value="nuxmv-bdd">nuxmv-BDD-LTL</option>
+                   <option value="nuxmv-bddp">nuxmv-BDD-LTLp</option>
+                   <option value="nuxmv-bmc">nuxmv-BMC-LTL</option>
+                   <option value="nuxmv-bmcp">nuxmv-BMC-LTLp</option>
                    <option value="aalta">Aalta</option>
                  </select>
                </div>
@@ -60,16 +64,6 @@
                     title="Go to Solver details page"> see Solver details </a>
                </div>
              </div> </br>
-
-            <div class="row">
-             <div class="col-md-12">
-               <label for="operators">LTL/LTLp:</label><br>
-               <select name="operators" id="operators">
-                 <option value="ltl">LTL</option>
-                 <option value="ltlp">LTLp</option>
-               </select>
-             </div>
-           </div> </br>
 
             <div class="row">
                 <div class="col-md-6">

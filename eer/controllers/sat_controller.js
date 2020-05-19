@@ -19,15 +19,89 @@ SatController = class SatController extends Controller {
     return this.query;
   }
 
-  checkSatisfiability() {
+  checkSatisfiability(time, memory, solver) {
       eer.views.toolbar.get_view().get_clockwidget().show();
 
-      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'NuSMV', function(data) {
-        eer.views.toolbar.get_view().get_clockwidget().hide();
-        var str = data.split("/var/www/html/");
-        var url =  str[1];
-        eer.views.toolbar.get_view().get_outputwidget().show(url);
-      })
+      switch (solver) {
+        case "nusmv-bdd":
+          return this.connection.request_satisfiable_nusmv(this.tbox, this.data, 'BDD', "LTL", time, memory, function(data) {
+            eer.views.toolbar.get_view().get_clockwidget().hide();
+            var str = data.split("/var/www/html/");
+            var url =  str[1];
+            eer.views.toolbar.get_view().get_outputwidget().show(url);
+          })
+          break;
+        case "nusmv-bddp":
+            return this.connection.request_satisfiable_nusmv(this.tbox, this.data, 'BDD', "LTLp", time, memory, function(data) {
+              eer.views.toolbar.get_view().get_clockwidget().hide();
+              var str = data.split("/var/www/html/");
+              var url =  str[1];
+              eer.views.toolbar.get_view().get_outputwidget().show(url);
+            })
+          break;
+        case "nusmv-bmc":
+          return this.connection.request_satisfiable_nusmv(this.tbox, this.data, 'BMC', "LTL", time, memory, function(data) {
+            eer.views.toolbar.get_view().get_clockwidget().hide();
+            var str = data.split("/var/www/html/");
+            var url =  str[1];
+            eer.views.toolbar.get_view().get_outputwidget().show(url);
+          })
+          break;
+        case "nusmv-bmcp":
+            return this.connection.request_satisfiable_nusmv(this.tbox, this.data, 'BMC', "LTLp", time, memory, function(data) {
+              eer.views.toolbar.get_view().get_clockwidget().hide();
+              var str = data.split("/var/www/html/");
+              var url =  str[1];
+              eer.views.toolbar.get_view().get_outputwidget().show(url);
+            })
+          break;
+
+        case "nuxmv-bdd":
+            return this.connection.request_satisfiable_nuxmv(this.tbox, this.data, 'BDD', "LTL", time, memory, function(data) {
+              eer.views.toolbar.get_view().get_clockwidget().hide();
+              var str = data.split("/var/www/html/");
+              var url =  str[1];
+              eer.views.toolbar.get_view().get_outputwidget().show(url);
+            })
+            break;
+        case "nuxmv-bddp":
+              return this.connection.request_satisfiable_nuxmv(this.tbox, this.data, 'BDD', "LTLp", time, memory, function(data) {
+                eer.views.toolbar.get_view().get_clockwidget().hide();
+                var str = data.split("/var/www/html/");
+                var url =  str[1];
+                eer.views.toolbar.get_view().get_outputwidget().show(url);
+              })
+          break;
+        case "nuxmv-bmc":
+            return this.connection.request_satisfiable_nuxmv(this.tbox, this.data, 'BMC', "LTL", time, memory, function(data) {
+              eer.views.toolbar.get_view().get_clockwidget().hide();
+              var str = data.split("/var/www/html/");
+              var url =  str[1];
+              eer.views.toolbar.get_view().get_outputwidget().show(url);
+            })
+          break;
+        case "nuxmv-bmcp":
+              return this.connection.request_satisfiable_nuxmv(this.tbox, this.data, 'BMC', "LTLp", time, memory, function(data) {
+                eer.views.toolbar.get_view().get_clockwidget().hide();
+                var str = data.split("/var/www/html/");
+                var url =  str[1];
+                eer.views.toolbar.get_view().get_outputwidget().show(url);
+              })
+          break;
+
+        case "aalta":
+          return this.connection.request_satisfiable_aalta(this.tbox, this.data, time, memory, function(data) {
+            eer.views.toolbar.get_view().get_clockwidget().hide();
+            var str = data.split("/var/www/html/");
+            var url =  str[1];
+            eer.views.toolbar.get_view().get_outputwidget().show(url);
+          })
+          break;
+        default:
+
+      }
+
+
   }
 
 }

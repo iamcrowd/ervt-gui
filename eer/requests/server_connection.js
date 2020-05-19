@@ -16,17 +16,63 @@ ServerConnection = class ServerConnection {
 
   // @param [String] json String with the JSON data.
   // @param [function] callback_function a function to execute when the POST is done.
-  request_satisfiable(json, data, query, reasoner, callback_function) {
+  request_satisfiable_nusmv(json, data, reasoner_sett, time, memory, callback_function) {
     var postdata, url;
     postdata = "json=" + json;
-    url = this.urlprefix + "t-crowd/api/satisfiable.php";
+    url = this.urlprefix + "t-crowd/api/satisfiable_nusmv.php";
     return $.ajax({
       type: "POST",
       url: url,
       data: {
-        "reasoner": reasoner,
+        "reasoner_sett": reasoner_sett,
+        "time": time,
+        "memory": memory
         "json": json,
-        "query" : query,
+        "data": data,
+      },
+      success: callback_function,
+      error: this.error_callback
+    });
+  }
+
+  // Send to the server a "is satisfiable" request
+
+  // @param [String] json String with the JSON data.
+  // @param [function] callback_function a function to execute when the POST is done.
+  request_satisfiable_nuxmv(json, data, reasoner_sett, time, memory, callback_function) {
+    var postdata, url;
+    postdata = "json=" + json;
+    url = this.urlprefix + "t-crowd/api/satisfiable_nuxmv.php";
+    return $.ajax({
+      type: "POST",
+      url: url,
+      data: {
+        "reasoner_sett": reasoner_sett,
+        "time": time,
+        "memory": memory
+        "json": json,
+        "data": data,
+      },
+      success: callback_function,
+      error: this.error_callback
+    });
+  }
+
+  // Send to the server a "is satisfiable" request
+
+  // @param [String] json String with the JSON data.
+  // @param [function] callback_function a function to execute when the POST is done.
+  request_satisfiable_aalta(json, data, time, memory, callback_function) {
+    var postdata, url;
+    postdata = "json=" + json;
+    url = this.urlprefix + "t-crowd/api/satisfiable_aalta.php";
+    return $.ajax({
+      type: "POST",
+      url: url,
+      data: {
+        "time": time,
+        "memory": memory
+        "json": json,
         "data": data,
       },
       success: callback_function,

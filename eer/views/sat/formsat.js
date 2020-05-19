@@ -24,10 +24,11 @@
       'click button#check': 'sat',
     },
     sat: function(){
-      console.log("LTL/LTLp: " + $("#operators").val());
-      console.log("Time: " + $("#time").val());
-      console.log("Memory: " + $("#memory").val());
-      console.log("Solver: " + this.$el.find("select#solver").val());
+      time = $("#time").val();
+      memory = $("#memory").val();
+      solver = this.$el.find("select#solver").val();
+      sat = new SatController();
+      sat.checkSatisfiability(time, memory, solver);
     },
     show: function() {
       return $("#form_sat_widget").modal("show");
