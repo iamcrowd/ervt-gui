@@ -1,5 +1,5 @@
 var QueriesWidgets, DataWidgets, WidgetMgr, JSONWidgets, ClockWidgets, OutputWidgets,
-FormWidgets, ToolBarWidget, exports, ref;
+FormWidgets, FormSatWidgets, ToolBarWidget, exports, ref;
 
 exports = exports != null ? exports : this;
 
@@ -47,6 +47,19 @@ FormWidgets = class FormWidgets extends WidgetMgr {
 
   show() {
     return this.random.show();
+  }
+};
+
+FormSatWidgets = class FormSatWidgets extends WidgetMgr {
+  constructor() {
+    super();
+    // Details page elements
+    this.sat = new views.sat.FormSatView(
+      {el: $("#form_sat")});
+  }
+
+  show() {
+    return this.sat.show();
   }
 };
 
@@ -159,6 +172,7 @@ exports.eer.views.ClockWidgets = ClockWidgets;
 exports.eer.views.OutputWidgets = OutputWidgets;
 exports.eer.views.ToolBarWidget = ToolBarWidget;
 exports.eer.views.FormWidget = FormWidgets;
+exports.eer.views.FormSatWidget = FormSatWidgets;
 
 exports.eer.views.ToolBarWidget.addToolBar = function() {
   return exports.eer.views.ToolBarWidget.addToolBar();

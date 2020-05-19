@@ -30,3 +30,4 @@
 <div id="clock_place"></div>
 <div id="output_place"></div>
 <div id="form_random"></div>
+<div id="form_sat"></div>

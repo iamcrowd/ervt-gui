@@ -17,6 +17,8 @@ ToolBarView = Backbone.View.extend({
     this.clock = new ClockWidgets();
     this.output = new OutputWidgets();
     this.random = new FormWidgets();
+    this.randomf = new FormWidgets();
+    this.satform = new FormSatWidgets();
   },
 
   render: function() {
@@ -29,8 +31,9 @@ ToolBarView = Backbone.View.extend({
     'click a#insert-query': 'insert_query',
     'click a#insert-data': 'insert_data',
     'click a#tdllitefpx': 'tdllitefpx',
-    'click a#sat': 'sat',
+    'click a#sat': 'satopts',
     'click a#random': 'random',
+    'click a#randomf': 'randomf',
   },
 
   get_outputwidget: function(){
@@ -58,12 +61,16 @@ ToolBarView = Backbone.View.extend({
     controller = new EncodeController();
     controller.encodeERvtIntoTDLliteFPX();
   },
-  sat: function() {
-    sat = new SatController();
-    sat.checkSatisfiability();
+  satopts: function() {
+    this.satform.show();
+  //  sat = new SatController();
+  //  sat.checkSatisfiability();
   },
   random: function(){
     this.random.show();
+  },
+  randomf: function(){
+    this.randomf.show();
   },
   // Show and enable the widget.
   enable: function() {

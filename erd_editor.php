@@ -102,6 +102,7 @@ require_once('template.php');
 <script src="./eer/views/toolbar/output.js"></script>
 <script src="./eer/views/toolbar/toolbar.js"></script>
 <script src="./eer/views/randomTKB/form.js"></script>
+<script src="./eer/views/sat/formsat.js"></script>
 
 <script src="./eer/controllers/controller.js"></script>
 <script src="./eer/controllers/encode_controller.js"></script>

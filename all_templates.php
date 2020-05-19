@@ -29,5 +29,6 @@ insert_template("clock","toolbar");
 insert_template("output","toolbar");
 insert_template("exportjson","json");
 insert_template("form","randomTKB");
+insert_template("formsat","sat");
 
 ?>

@@ -77,8 +77,7 @@
       <div class="dropdown-menu" aria-labelledby="ervt-dropdown-btn">
         <!--  <a class="dropdown-item" href="#" id="insert-query">Insert Query</a>
         <div class="dropdown-divider"></div> -->
-          <a class="dropdown-item" href="#" id="satf">Satisfiability - Pure Future</a>
-          <a class="dropdown-item" href="#" id="sat">Satisfiability - Past/Future</a>
+          <a class="dropdown-item" href="#" id="sat">Satisfiability</a>
      </div>
   </div>
 
@@ -90,7 +89,8 @@
          Random TKB
      </a>
       <div class="dropdown-menu" aria-labelledby="ervt-dropdown-btn">
-          <a class="dropdown-item" href="#" id="random">Generate Random TKB</a>
+          <a class="dropdown-item" href="#" id="random">Generate Random TKB past/future</a>
+          <a class="dropdown-item" href="#" id="randomf">Generate Random TKB future</a>
      </div>
   </div>
 
