@@ -15,7 +15,7 @@ EncodeController = class EncodeController extends Controller{
 
   encodeERvtIntoTDLliteFPX() {
       eer.views.toolbar.get_view().get_clockwidget().show();
-      return this.connection.request_encoding(this.tbox, this.data, 'tdllitefpx', function(data) {
+      return this.connection.request_encoding(this.tbox, this.data, 'ERvtTBoxTDLLiteFPX', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
         var str = data.split("/var/www/html/");
         var url =  str[1];

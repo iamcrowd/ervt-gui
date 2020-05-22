@@ -22,7 +22,7 @@ SatController = class SatController extends Controller {
   checkPureFutureSatisfiability() {
       eer.views.toolbar.get_view().get_clockwidget().show();
 
-      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'TBoxSatNuSMV', function(data) {
+      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'ERvtTBoxABoxSatLTL', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
         var str = data.split("/var/www/html/");
         var url =  str[1];
@@ -33,7 +33,7 @@ SatController = class SatController extends Controller {
   checkPastABoxSatisfiability() {
       eer.views.toolbar.get_view().get_clockwidget().show();
 
-      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'TBoxABoxSatNuSMV', function(data) {
+      return this.connection.request_satisfiable(this.tbox, this.data, this.query, 'ERvtTBoxABoxSatPLTL', function(data) {
         eer.views.toolbar.get_view().get_clockwidget().hide();
         var str = data.split("/var/www/html/");
         var url =  str[1];

@@ -29,7 +29,6 @@ ToolBarView = Backbone.View.extend({
     'click a#insert-data': 'insert_data',
     'click a#tdllitefpx': 'tdllitefpx',
     'click a#sat': 'sat',
-    'click a#pastsat': 'pastsat',
     'click a#pastsatabox': 'pastsatabox',
   },
 
